@@ -29,7 +29,10 @@ public class CupPoint : MonoBehaviour
     {
         if(other.CompareTag("Ball"))
         {
+            Debug.Log("Ball enter cup");
             gameController.AddPoint(pointsWorth);
+            Destroy(other, 3);
+            gameController.SpawnBall();
         }
     }
 }
