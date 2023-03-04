@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class BeerGameController : MonoBehaviour
 {
@@ -93,5 +95,10 @@ public class BeerGameController : MonoBehaviour
     {
         if (ball != null) return;
         ball = Instantiate(ballPrefab, ballSpawner.position, Quaternion.identity);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene("FlipCup_Scene");
     }
 }

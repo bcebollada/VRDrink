@@ -8,6 +8,7 @@ TagManager:
   - JeizerSpawner
   - Cup
   - Ball
+  - Table
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Hand
   - Wand
   - Magic
-  - 
+  - PlayerWall
   - 
   - 
   - 
