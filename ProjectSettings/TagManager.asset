@@ -9,6 +9,10 @@ TagManager:
   - Cup
   - Ball
   - Table
+  - Obstacle
+  - Ground
+  - Wall
+  - MacroGameController
   layers:
   - Default
   - TransparentFX
@@ -22,21 +26,21 @@ TagManager:
   - DynamicPose
   - 
   - Enviorment
+  - Ball
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
+  - RunningBall
   - Grabbable
   - Hand
   - Wand
   - Magic
   - PlayerWall
-  - 
-  - 
+  - RunningCup
+  - Wall
   - 
   - 
   - 

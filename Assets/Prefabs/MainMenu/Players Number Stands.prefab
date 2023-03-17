@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7701430002612242372}
   - component: {fileID: 4706192152588653222}
   - component: {fileID: 7351146381588806796}
-  - component: {fileID: 2380582275913409106}
+  - component: {fileID: 5939543202550221091}
   m_Layer: 0
   m_Name: CanvasCup2
   m_TagString: Untagged
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2380582275913409106
+--- !u!114 &5939543202550221091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,12 +222,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 848199155284698132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9efade054f84854cbafab2eadb17d5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 20703a4145a28f947b7016e661714c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 8022012474296706975}
   camera: {fileID: 0}
-  textOffset: 0.5
   isInstantiated: 1
 --- !u!1 &900007476999450771
 GameObject:
@@ -5195,7 +5193,7 @@ GameObject:
   - component: {fileID: 5391379215754473875}
   - component: {fileID: 8048917103961907247}
   - component: {fileID: 5911365232416007200}
-  - component: {fileID: 2016696057688998761}
+  - component: {fileID: 5278908427672919552}
   m_Layer: 0
   m_Name: CanvasCup4
   m_TagString: Untagged
@@ -5285,7 +5283,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2016696057688998761
+--- !u!114 &5278908427672919552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5294,12 +5292,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1213973304420719167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9efade054f84854cbafab2eadb17d5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 20703a4145a28f947b7016e661714c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 3087722919527096659}
   camera: {fileID: 0}
-  textOffset: 0.5
   isInstantiated: 1
 --- !u!1 &1263647705970459890
 GameObject:
@@ -10613,34 +10609,10 @@ MonoBehaviour:
       m_Calls: []
   Grabbed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupGrabbed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   Released:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupRealesed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   HoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -10655,13 +10627,37 @@ MonoBehaviour:
       m_Calls: []
   HandGrabbed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HandReleased:
     m_PersistentCalls:
       m_Calls: []
   HandFullReleased:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupRealesed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Socketed:
     m_PersistentCalls:
       m_Calls: []
@@ -10977,34 +10973,10 @@ MonoBehaviour:
       m_Calls: []
   Grabbed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupGrabbed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   Released:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupRealesed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   HoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -11019,13 +10991,37 @@ MonoBehaviour:
       m_Calls: []
   HandGrabbed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HandReleased:
     m_PersistentCalls:
       m_Calls: []
   HandFullReleased:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupRealesed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Socketed:
     m_PersistentCalls:
       m_Calls: []
@@ -12465,7 +12461,7 @@ GameObject:
   - component: {fileID: 8170283227235944252}
   - component: {fileID: 9124294388447796623}
   - component: {fileID: 4461241132031074634}
-  - component: {fileID: 4235489859979784292}
+  - component: {fileID: 8054124737574891700}
   m_Layer: 0
   m_Name: CanvasCup3
   m_TagString: Untagged
@@ -12555,7 +12551,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4235489859979784292
+--- !u!114 &8054124737574891700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12564,12 +12560,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5411802656675345907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9efade054f84854cbafab2eadb17d5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 20703a4145a28f947b7016e661714c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 2005802681229657893}
   camera: {fileID: 0}
-  textOffset: 0.5
   isInstantiated: 1
 --- !u!1 &5691550161808837600
 GameObject:
@@ -18011,7 +18005,7 @@ GameObject:
   - component: {fileID: 433952364258630109}
   - component: {fileID: 1890004868051521987}
   - component: {fileID: 4971226224374707162}
-  - component: {fileID: 6821578362829420863}
+  - component: {fileID: 1476318615477466333}
   m_Layer: 0
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -18101,7 +18095,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6821578362829420863
+--- !u!114 &1476318615477466333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18110,12 +18104,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6545868617139168664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9efade054f84854cbafab2eadb17d5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 20703a4145a28f947b7016e661714c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 2005802681229657893}
   camera: {fileID: 0}
-  textOffset: 1
   isInstantiated: 1
 --- !u!1 &6582762118427962493
 GameObject:
@@ -18861,34 +18853,10 @@ MonoBehaviour:
       m_Calls: []
   Grabbed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupGrabbed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   Released:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
-        m_MethodName: CupRealesed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   HoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -18903,13 +18871,37 @@ MonoBehaviour:
       m_Calls: []
   HandGrabbed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HandReleased:
     m_PersistentCalls:
       m_Calls: []
   HandFullReleased:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DrinkMeToStart_Script, Assembly-CSharp
+        m_MethodName: CupRealesed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Socketed:
     m_PersistentCalls:
       m_Calls: []
