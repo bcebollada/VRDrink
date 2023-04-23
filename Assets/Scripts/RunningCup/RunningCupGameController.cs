@@ -93,6 +93,9 @@ public class RunningCupGameController : MonoBehaviour
     void TimerComplete()
     {
         if (playerName == "Player1") macroGameController.playersPoints[0] += points;
+        else if (playerName == "Player2") macroGameController.playersPoints[1] += points;
+        else if (playerName == "Player3") macroGameController.playersPoints[2] += points;
+        else if (playerName == "Player4") macroGameController.playersPoints[3] += points;
         timerRunning = false;
 
         // Code to execute when the timer is complete

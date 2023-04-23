@@ -29,7 +29,7 @@ public class CupBehaviour : MonoBehaviour
             Debug.Log("Cup rotated!");
             if(shouldSpillDrink) beerEffect.SetActive(true);
             secondsSpilling += Time.deltaTime;
-            if (myEvent != null && secondsSpilling >= 3) myEvent.Invoke();
+            if (myEvent != null && secondsSpilling >= 1.5f) myEvent.Invoke();
         }
         else
         {
