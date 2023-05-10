@@ -520,8 +520,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 8
-    - _utsVersionZ: 6
+    - _utsVersionY: 9
+    - _utsVersionZ: 3
     m_Colors:
     - _1st_ShadeColor: {r: 0.2735849, g: 0.11689762, b: 0, a: 1}
     - _2nd_ShadeColor: {r: 0.11320752, g: 0.0076620234, b: 0, a: 1}

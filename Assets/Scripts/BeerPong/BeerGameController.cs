@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Normal.Realtime;
 
 
 public class BeerGameController : MonoBehaviour
@@ -14,6 +15,7 @@ public class BeerGameController : MonoBehaviour
 
     public string playerName;
     public int points;
+    public int pointsGoal; //player will need to this amout of points
 
     public TMP_Text pointText, timerText, startCountDownText;
 
@@ -25,10 +27,14 @@ public class BeerGameController : MonoBehaviour
 
     public bool isDebugMode;
 
+    private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+
 
     private void Awake()
     {
-        if(!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+        instantiateOptions.ownedByClient = true;
+
+        if (!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
     }
 
     private void Start()
@@ -61,56 +67,85 @@ public class BeerGameController : MonoBehaviour
             }
         }
 
+        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+            UpdateTablesMainClient(); //if is in the headset, create tables
+
+    }
+
+
+    private void UpdateTablesMainClient()
+    {
         if (timeLeft < 15 && timeLeft > 5 && tableLevel == 0)
         {
             tableLevel = 1;
             Debug.Log("Static destroyed, moving spawned");
-            var smoke = Instantiate(smokeEffect, currentTable.transform.position, Quaternion.identity);
-            Destroy(smoke, 3);
-            Destroy(currentTable); //removes first table
-            currentTable = Instantiate(movingTable, tableSpawner.position, Quaternion.identity); //creates second table
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
+            Realtime.Destroy(currentTable); //removes first table
+            currentTable = Realtime.Instantiate("TableCupsMoving", tableSpawner.position, Quaternion.identity, instantiateOptions); //creates second table
         }
         else if (timeLeft < 5 && tableLevel == 1)
         {
             tableLevel = 2;
             Debug.Log("moving destroyed, last spawned");
-            var smoke = Instantiate(smokeEffect, currentTable.transform.position, Quaternion.identity);
-            Destroy(smoke, 3);
-            Destroy(currentTable); //removes first table
-            currentTable = Instantiate(lastTable, tableSpawner.position, Quaternion.identity); //creates third table
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
+            Realtime.Destroy(currentTable); //removes first table
+
+            currentTable = Realtime.Instantiate("TableCupSpecial", tableSpawner.position, Quaternion.identity, instantiateOptions); //creates third table
         }
     }
-
    
 
     void TimerComplete()
     {
-        if (playerName == "Player1") macroGameController.playersPoints[0] += points;
-        else if (playerName == "Player2") macroGameController.playersPoints[1] += points;
-        if (playerName == "Player3") macroGameController.playersPoints[2] += points;
-        if (playerName == "Player4") macroGameController.playersPoints[3] += points;
+        /*if (playerName == "Player1") macroGameController.playerShots[0] += points;
+        else if (playerName == "Player2") macroGameController.playerShots[1] += points;
+        if (playerName == "Player3") macroGameController.playerShots[2] += points;
+        if (playerName == "Player4") macroGameController.playerShots[3] += points;*/
+
+        if(pointsGoal-points == 0) //vr player won
+        {
+            macroGameController.AddShots(0, 1, 1, 1);
+        }
+        else //vr player lost
+        {
+            macroGameController.AddShots(1, 0, 0, 0);
+        }
 
         // Code to execute when the timer is complete
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        var smoke = Instantiate(smokeEffect, currentTable.transform.position, Quaternion.identity);
-        Destroy(smoke, 3);
-        Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
-        Destroy(currentTable); //removes last table
+        var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+        StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
+        Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+        //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
+        Realtime.Destroy(currentTable); //removes last table
     }
 
     // Call this function to start the timer
     public void StartGame()
     {
         gameStartCountdown = true;
-        var smoke = Instantiate(smokeEffect, startStand.transform.position, Quaternion.identity);
-        Destroy(smoke, 3);
+
+        var smoke = Realtime.Instantiate("Thick Smoke Variant", startStand.transform.position, Quaternion.identity, instantiateOptions);
+        StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
         Destroy(startStand);
-        SpawnBall();
-        currentTable = Instantiate(staticTable, tableSpawner.position, Quaternion.identity);
-        var smoke2 = Instantiate(smokeEffect, currentTable.transform.position, Quaternion.identity);
-        Destroy(smoke2, 3);
+
+        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            SpawnBall();
+            currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, Quaternion.identity, instantiateOptions);
+        }
+
+        var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+        StartCoroutine(DestroyRealtimeObject(smoke2, 3));
+
     }
 
     public void MiniGameEnd()
@@ -120,17 +155,25 @@ public class BeerGameController : MonoBehaviour
     public void AddPoint(int pointsToAdd)
     {
         points += pointsToAdd;
-        pointText.text = points.ToString();
+        pointText.text = $"{points} /{pointsGoal}";
     }
 
     public void SpawnBall()
     {
         if (ball != null) return;
-        ball = Instantiate(ballPrefab, ballSpawner.position, Quaternion.identity);
+
+        ball = Realtime.Instantiate("Ball", ballSpawner.position, Quaternion.identity, instantiateOptions);
+        //ball = Instantiate(ballPrefab, ballSpawner.position, Quaternion.identity);
     }
 
     public void LoadScene()
     {
         SceneManager.LoadScene("FlipCup_Scene");
+    }
+
+    private IEnumerator DestroyRealtimeObject(GameObject objectToDestroy, float secondsToDestroy)
+    {
+        yield return new WaitForSeconds(secondsToDestroy);
+        Realtime.Destroy(objectToDestroy);
     }
 }

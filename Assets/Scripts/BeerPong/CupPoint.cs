@@ -31,7 +31,7 @@ public class CupPoint : MonoBehaviour
         {
             Debug.Log("Ball enter cup");
             gameController.AddPoint(pointsWorth);
-            Destroy(other, 3);
+            Destroy(other.gameObject, 3);
             gameController.SpawnBall();
         }
     }

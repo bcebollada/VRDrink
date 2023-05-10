@@ -24,6 +24,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -519,8 +520,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 8
-    - _utsVersionZ: 6
+    - _utsVersionY: 9
+    - _utsVersionZ: 3
     m_Colors:
     - _1st_ShadeColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _2nd_ShadeColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}

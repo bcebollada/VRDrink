@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
 
 public class BallScript : MonoBehaviour
 {
@@ -27,8 +28,13 @@ public class BallScript : MonoBehaviour
 
     public void Grabbed()
     {
+        GetComponent<RealtimeTransform>().ClearOwnership();
+        GetComponent<RealtimeView>().ClearOwnership();
+        GetComponent<RealtimeView>().RequestOwnership();
+        GetComponent<RealtimeTransform>().RequestOwnership();
         transparentSphere.SetActive(false);
-        rb.constraints = RigidbodyConstraints.None;
+        rb.isKinematic = false;
+
     }
 
     private void OnCollisionEnter(Collision collision)

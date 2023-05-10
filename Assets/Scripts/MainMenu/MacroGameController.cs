@@ -10,11 +10,11 @@ public class MacroGameController : MonoBehaviour
 
     public string playerPlaying;
 
-    public int[] playersPoints = new int[4]; //array used to controll players points
+    public int[] playerShots = new int[4]; //array used to controll players points
 
     public GameObject playerNumStand, playerSelectStartStand,smokeEffect,playerCamera;
 
-    public int miniGamesPlayed; //int to know which game we are 0 = none 1 = beerpong 2 = flip cup 3 = roullete
+    public int miniGamesPlayed; //int to know which game we are 0 = none 1 = beerpong 2 = flip cup 3 = roullete 
 
     public bool isMainMacroController;
 
@@ -51,10 +51,10 @@ public class MacroGameController : MonoBehaviour
     {
         playerNumbers = 1;
 
-        playersPoints[0] = 0; //sets the array for the number of players
-        playersPoints[1] = 0;
-        playersPoints[2] = -1; //negative for players not used
-        playersPoints[3] = -1;
+        playerShots[0] = 0; //sets the array for the number of players
+        playerShots[1] = 0;
+        playerShots[2] = -1; //negative for players not used
+        playerShots[3] = -1;
 
         NextGame();
     }
@@ -63,10 +63,10 @@ public class MacroGameController : MonoBehaviour
     {
         playerNumbers = 2;
 
-        playersPoints[0] = 0; //sets the array for the number of players
-        playersPoints[1] = 0;
-        playersPoints[2] = 0; //negative for players not used
-        playersPoints[3] = -1;
+        playerShots[0] = 0; //sets the array for the number of players
+        playerShots[1] = 0;
+        playerShots[2] = 0; //negative for players not used
+        playerShots[3] = -1;
 
         NextGame();
     }
@@ -75,12 +75,20 @@ public class MacroGameController : MonoBehaviour
     {
         playerNumbers = 3;
 
-        playersPoints[0] = 0; //sets the array for the number of players
-        playersPoints[1] = 0;
-        playersPoints[2] = 0; 
-        playersPoints[3] = 0;
+        playerShots[0] = 0; //sets the array for the number of players
+        playerShots[1] = 0;
+        playerShots[2] = 0; 
+        playerShots[3] = 0;
 
         NextGame();
+    }
+
+    public void AddShots(int player1Shot, int player2Shot, int player3Shot, int player4Shot)
+    {
+        playerShots[0] = player1Shot;
+        playerShots[1] = player2Shot;
+        if(playerNumbers >= 2) playerShots[2] = player3Shot;
+        if(playerNumbers == 3) playerShots[3] = player4Shot;
     }
 
 
