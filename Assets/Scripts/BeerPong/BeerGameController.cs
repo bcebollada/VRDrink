@@ -11,6 +11,8 @@ public class BeerGameController : MonoBehaviour
     //Tables and ball Prefabs
     [SerializeField] private GameObject staticTable, movingTable, lastTable, currentTable, ballPrefab, ball, startStand, smokeEffect, scoreBoard;
     [SerializeField] private Transform tableSpawner, ballSpawner;
+    [SerializeField] private Transform[] interceptorsMesh = new Transform[3];
+
     private int tableLevel;
 
     public string playerName;
@@ -23,7 +25,7 @@ public class BeerGameController : MonoBehaviour
     private float countDown = 5f;
     public bool timerRunning, gameStartCountdown;
 
-    private MacroGameController macroGameController;
+    [SerializeField] private MacroGameController macroGameController;
 
     public bool isDebugMode;
 
@@ -40,11 +42,12 @@ public class BeerGameController : MonoBehaviour
     private void Start()
     {
         playerName = macroGameController.playerPlaying;
+
     }
 
     void Update()
     {
-        if(gameStartCountdown)
+        if (gameStartCountdown)
         {
             countDown -= Time.deltaTime; //reduce start countdown in seconds
             startCountDownText.text = Mathf.Round(countDown).ToString();
@@ -130,6 +133,8 @@ public class BeerGameController : MonoBehaviour
     // Call this function to start the timer
     public void StartGame()
     {
+        SetInterceptors();
+
         gameStartCountdown = true;
 
         var smoke = Realtime.Instantiate("Thick Smoke Variant", startStand.transform.position, Quaternion.identity, instantiateOptions);
@@ -146,6 +151,34 @@ public class BeerGameController : MonoBehaviour
         var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
         StartCoroutine(DestroyRealtimeObject(smoke2, 3));
 
+    }
+
+    public void SetInterceptors()
+    {
+
+        if (macroGameController.playerNumbers == 2) //2 mobile players
+        {
+            print("foi");
+            interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 2, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
+            interceptorsMesh[0].localPosition += new Vector3(0.25f, 0, 0);
+
+            interceptorsMesh[1].localScale = new Vector3(interceptorsMesh[1].localScale.x / 2, interceptorsMesh[1].localScale.y, interceptorsMesh[1].localScale.z);
+            interceptorsMesh[1].localPosition -= new Vector3(0.25f, 0, 0);
+
+            interceptorsMesh[2].gameObject.SetActive(false);
+        }
+        else if (macroGameController.playerNumbers == 3) //3 mobile players
+        {
+            print("foi2 ");
+
+            interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 3, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
+            interceptorsMesh[0].localPosition += new Vector3(0.33f, 0, 0);
+
+            interceptorsMesh[1].localScale = new Vector3(interceptorsMesh[1].localScale.x / 3, interceptorsMesh[1].localScale.y, interceptorsMesh[1].localScale.z);
+
+            interceptorsMesh[2].localScale = new Vector3(interceptorsMesh[2].localScale.x / 3, interceptorsMesh[2].localScale.y, interceptorsMesh[2].localScale.z);
+            interceptorsMesh[2].localPosition -= new Vector3(0.33f, 0, 0);
+        }
     }
 
     public void MiniGameEnd()
