@@ -156,6 +156,12 @@ public class BeerGameController : MonoBehaviour
     public void SetInterceptors()
     {
 
+        if(macroGameController.playerNumbers == 1)
+        {
+            interceptorsMesh[1].gameObject.SetActive(false);
+            interceptorsMesh[2].gameObject.SetActive(false);
+        }
+
         if (macroGameController.playerNumbers == 2) //2 mobile players
         {
             print("foi");
