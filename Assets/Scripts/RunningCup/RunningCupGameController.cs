@@ -7,12 +7,12 @@ using TMPro;
 public class RunningCupGameController : MonoBehaviour
 {
     [SerializeField] private GameObject cup, startStand, smokeEffect, scoreBoard, pistol;
-    public Vector3 ballSpawnCenter;
-    public Vector3 ballSpawnSize;
+    public Vector3 cupSpawnCenter;
+    public Vector3 cupSpawnSize;
 
     public int ballNumbers;
 
-    public string playerName;
+    public int pointsGoal;
     public int points;
     public TMP_Text pointsText, startCountDownText, timerText;
 
@@ -36,7 +36,7 @@ public class RunningCupGameController : MonoBehaviour
 
     private void Start()
     {
-        playerName = macroGameController.playerPlaying;
+
     }
 
 
@@ -76,13 +76,13 @@ public class RunningCupGameController : MonoBehaviour
         var smoke = Instantiate(smokeEffect, startStand.transform.position, Quaternion.identity);
         Destroy(smoke, 3);
         Destroy(startStand);
-        SpawnCups();
+        //SpawnCups();
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(ballSpawnCenter, ballSpawnSize);
+        Gizmos.DrawCube(cupSpawnCenter, cupSpawnSize);
     }
 
     public void AddPoint()
@@ -92,10 +92,16 @@ public class RunningCupGameController : MonoBehaviour
 
     void TimerComplete()
     {
-        if (playerName == "Player1") macroGameController.playerShots[0] += points;
-        else if (playerName == "Player2") macroGameController.playerShots[1] += points;
-        else if (playerName == "Player3") macroGameController.playerShots[2] += points;
-        else if (playerName == "Player4") macroGameController.playerShots[3] += points;
+
+        if (pointsGoal - points == 0) //vr player won
+        {
+            macroGameController.AddShots(0, 1, 1, 1);
+        }
+        else //vr player lost
+        {
+            macroGameController.AddShots(1, 0, 0, 0);
+        }
+
         timerRunning = false;
 
         // Code to execute when the timer is complete
@@ -119,7 +125,7 @@ public class RunningCupGameController : MonoBehaviour
         //spawns randomly the cups
         for (int i = 0; i < ballNumbers; i++)
         {
-            var spawnArea = ballSpawnCenter + new Vector3(Random.Range(-ballSpawnSize.x / 2, ballSpawnSize.x / 2), 0, Random.Range(-ballSpawnSize.z / 2, ballSpawnSize.z / 2));
+            var spawnArea = cupSpawnCenter + new Vector3(Random.Range(-cupSpawnSize.x / 2, cupSpawnSize.x / 2), 0, Random.Range(-cupSpawnSize.z / 2, cupSpawnSize.z / 2));
             Instantiate(cup, spawnArea, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
         }
         

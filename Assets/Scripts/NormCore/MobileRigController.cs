@@ -15,9 +15,12 @@ public class MobileRigController : MonoBehaviour
 
     public TMP_Text text;
 
+    public GameObject scoreBoard;
+
     public int miniGamesPlayed; //int to know which game we are 0 = none 1 = beerpong 2 = shootCup 3 = roullete
 
     private int mobileRigPlayerNumber;
+
 
     private void Awake()
     {
@@ -90,4 +93,11 @@ public class MobileRigController : MonoBehaviour
             eventToPerform = null; //update do action for roullete
         }
     }
+
+    public void ShowScoreboard()
+    {
+        scoreBoard.SetActive(true);
+    }
+
+
 }

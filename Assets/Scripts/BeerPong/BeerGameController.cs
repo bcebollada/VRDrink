@@ -122,18 +122,36 @@ public class BeerGameController : MonoBehaviour
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
-        StartCoroutine(DestroyRealtimeObject(smoke, 3));
+        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile
+        {
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
-        Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, -90f, 0), instantiateOptions);
-        //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
-        Realtime.Destroy(currentTable); //removes last table
+            Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+            //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
+            Realtime.Destroy(currentTable); //removes last table
+
+
+
+        }
+        else //is mobile
+        {
+            GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRigGameController");
+
+            foreach (var mobiles in mobileRigs)
+            {
+                mobiles.GetComponent<MobileRigController>().ShowScoreboard();
+            }
+        }
+
+
     }
 
     // Call this function to start the timer
     public void StartGame()
     {
         SetInterceptors();
+
 
         gameStartCountdown = true;
 
@@ -158,24 +176,26 @@ public class BeerGameController : MonoBehaviour
 
         if(macroGameController.playerNumbers == 1)
         {
-            interceptorsMesh[1].gameObject.SetActive(false);
-            interceptorsMesh[2].gameObject.SetActive(false);
+            interceptorsMesh[1].transform.position += new Vector3(0, 200, 0); //add hight so it doesnt show. normcore doesnt let us destroy scene objects
+            interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
         }
 
         if (macroGameController.playerNumbers == 2) //2 mobile players
         {
-            print("foi");
+            interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
+
             interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 2, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
             interceptorsMesh[0].localPosition += new Vector3(0.25f, 0, 0);
 
             interceptorsMesh[1].localScale = new Vector3(interceptorsMesh[1].localScale.x / 2, interceptorsMesh[1].localScale.y, interceptorsMesh[1].localScale.z);
             interceptorsMesh[1].localPosition -= new Vector3(0.25f, 0, 0);
 
-            interceptorsMesh[2].gameObject.SetActive(false);
         }
         else if (macroGameController.playerNumbers == 3) //3 mobile players
         {
-            print("foi2 ");
+            interceptorsMesh[0].gameObject.SetActive(true);
+            interceptorsMesh[1].gameObject.SetActive(true);
+            interceptorsMesh[2].gameObject.SetActive(true);
 
             interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 3, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
             interceptorsMesh[0].localPosition += new Vector3(0.33f, 0, 0);

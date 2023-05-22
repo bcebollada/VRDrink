@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Normal.Realtime;
 
 
 public class MacroGameController : MonoBehaviour
@@ -12,20 +13,25 @@ public class MacroGameController : MonoBehaviour
 
     public int[] playerShots = new int[4]; //array used to controll players points
 
-    public GameObject playerNumStand, playerSelectStartStand,smokeEffect,playerCamera;
+    public GameObject playerSelectStartStand,smokeEffect,playerCamera, waitPlayersBoard;
+
+    private GameObject playerNumStand;
 
     public int miniGamesPlayed; //int to know which game we are 0 = none 1 = beerpong 2 = flip cup 3 = roullete 
 
     public bool isMainMacroController;
 
+    private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+
+
 
     private void Awake()
     {
-        Debug.Log("awake");
+        instantiateOptions.ownedByClient = true;
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        
+  
     }
 
     private void Start()
@@ -42,9 +48,9 @@ public class MacroGameController : MonoBehaviour
     {
         var spawnPosition = playerSelectStartStand.transform.position;
         Destroy(playerSelectStartStand);
-        var smoke = Instantiate(smokeEffect, spawnPosition, Quaternion.identity);
-        Destroy(smoke, 3);
-        Instantiate(playerNumStand, spawnPosition, Quaternion.identity);
+        //var smoke = Instantiate(smokeEffect, spawnPosition, Quaternion.identity);
+        //Destroy(smoke, 3);
+        playerNumStand = Realtime.Instantiate("Players Number Stands", spawnPosition, Quaternion.identity, instantiateOptions);
     }
 
     public void PlayersNum2()
@@ -56,7 +62,7 @@ public class MacroGameController : MonoBehaviour
         playerShots[2] = -1; //negative for players not used
         playerShots[3] = -1;
 
-        NextGame();
+        PlayerConnecWait();
     }
 
     public void PlayersNum3()
@@ -68,7 +74,7 @@ public class MacroGameController : MonoBehaviour
         playerShots[2] = 0; //negative for players not used
         playerShots[3] = -1;
 
-        NextGame();
+        PlayerConnecWait();
     }
 
     public void PlayersNum4()
@@ -80,7 +86,7 @@ public class MacroGameController : MonoBehaviour
         playerShots[2] = 0; 
         playerShots[3] = 0;
 
-        NextGame();
+        PlayerConnecWait();
     }
 
     public void AddShots(int player1Shot, int player2Shot, int player3Shot, int player4Shot)
@@ -91,6 +97,11 @@ public class MacroGameController : MonoBehaviour
         if(playerNumbers == 3) playerShots[3] = player4Shot;
     }
 
+    public void PlayerConnecWait() //waits for all player to connect in order to continue
+    {
+        Realtime.Instantiate("WaitPlayersBoard", playerNumStand.transform.position, playerNumStand.transform.rotation, instantiateOptions);
+        Realtime.Destroy(playerNumStand);
+    }
 
     public void NextGame() //checks how many players are planning depending on who is playing, restarts all the games
     {

@@ -13,35 +13,47 @@ public class ScoreBoard_Script : MonoBehaviour
 
     private void Awake()
     {
-        macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
 
-
-        hvrInputModule = GameObject.Find("UIManager").GetComponent<HVRInputModule>();
-        hvrInputModule.UICanvases.Add(this.GetComponent<Canvas>());
-
-        playerShots = macroGameController.playerShots;
     }
 
     private void Start()
     {
-        player1Score.text = playerShots[0].ToString();
-        player2Score.text = playerShots[1].ToString();
+        player1Score.text = "start void";
 
-        //checks if points is negative to know if player exists
-        if(playerShots[2] < 0)
+        //find macroController and get shots from him
+        macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
+        player2Score.text = (GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>().ToString());
+
+
+        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile
         {
+            hvrInputModule = GameObject.Find("UIManager").GetComponent<HVRInputModule>();
+            hvrInputModule.UICanvases.Add(this.GetComponent<Canvas>());
+        }
+
+
+        playerShots = macroGameController.playerShots;
+
+        player1Score.text = $"Take {playerShots[0]} shots";
+        player2Score.text = $"Take {playerShots[1]} shots";
+
+        //checks how many players are to deactivate labels on scoreBoard
+        if (macroGameController.playerNumbers < 2)
+        {
+            player3.transform.parent.gameObject.SetActive(false);
             player3.text = "";
             player3Score.text = "";
         }
-        else player3Score.text = playerShots[2].ToString();
+        else player3Score.text = $"Take {playerShots[2]} shots";
 
-        //checks if points is negative to know if player exists
-        if (playerShots[3] < 0)
+        //checks how many players are to deactivate labels on scoreBoard
+        if (macroGameController.playerNumbers < 3)
         {
+            player4.transform.parent.gameObject.SetActive(false);
             player4.text = "";
             player4Score.text = "";
         }
-        else player4Score.text = playerShots[3].ToString();
+        else player4Score.text = $"Take {playerShots[3]} shots";
     }
 
     public void ButtonPress()
