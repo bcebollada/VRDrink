@@ -18,7 +18,7 @@ public class RequestOwnership : MonoBehaviour
     {
         if (GetComponent<RealtimeView>().room.connected && !hasRequested)
         {
-            if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) 
+            if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) 
                 StartCoroutine("RequestOwenerShip"); //runs just on quest or  PC
         }
     }

@@ -43,6 +43,14 @@ public class BeerGameController : MonoBehaviour
     {
         playerName = macroGameController.playerPlaying;
 
+        foreach (var interceptor in interceptorsMesh)
+        {
+            interceptor.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            //interceptor.gameObject.SetActive(false);
+        }
+
+        //SetInterceptors();
+
     }
 
     void Update()
@@ -70,7 +78,7 @@ public class BeerGameController : MonoBehaviour
             }
         }
 
-        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
             UpdateTablesMainClient(); //if is in the headset, create tables
 
     }
@@ -111,18 +119,18 @@ public class BeerGameController : MonoBehaviour
 
         if(pointsGoal-points == 0) //vr player won
         {
-            macroGameController.AddShots(0, 1, 1, 1);
+            macroGameController.AddShotsLocalGame(0, 1, 1, 1);
         }
         else //vr player lost
         {
-            macroGameController.AddShots(1, 0, 0, 0);
+            macroGameController.AddShotsLocalGame(1, 0, 0, 0);
         }
 
         // Code to execute when the timer is complete
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile
+        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile
         {
             var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
             StartCoroutine(DestroyRealtimeObject(smoke, 3));
@@ -153,14 +161,14 @@ public class BeerGameController : MonoBehaviour
         SetInterceptors();
 
 
-        gameStartCountdown = true;
+        gameStartCountdown = true;  
 
         var smoke = Realtime.Instantiate("Thick Smoke Variant", startStand.transform.position, Quaternion.identity, instantiateOptions);
         StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
         Destroy(startStand);
 
-        if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
         {
             SpawnBall();
             currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, Quaternion.identity, instantiateOptions);
@@ -176,13 +184,19 @@ public class BeerGameController : MonoBehaviour
 
         if(macroGameController.playerNumbers == 1)
         {
-            interceptorsMesh[1].transform.position += new Vector3(0, 200, 0); //add hight so it doesnt show. normcore doesnt let us destroy scene objects
-            interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
+            interceptorsMesh[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+            //interceptorsMesh[1].transform.position += new Vector3(0, 200, 0); //add hight so it doesnt show. normcore doesnt let us destroy scene objects
+            //interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
         }
 
         if (macroGameController.playerNumbers == 2) //2 mobile players
         {
-            interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
+            interceptorsMesh[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
+            interceptorsMesh[1].gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+
+            //interceptorsMesh[2].transform.position += new Vector3(0, 200, 0);
 
             interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 2, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
             interceptorsMesh[0].localPosition += new Vector3(0.25f, 0, 0);
@@ -193,9 +207,10 @@ public class BeerGameController : MonoBehaviour
         }
         else if (macroGameController.playerNumbers == 3) //3 mobile players
         {
-            interceptorsMesh[0].gameObject.SetActive(true);
-            interceptorsMesh[1].gameObject.SetActive(true);
-            interceptorsMesh[2].gameObject.SetActive(true);
+            interceptorsMesh[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
+            interceptorsMesh[1].gameObject.GetComponent<MeshRenderer>().enabled = true;
+            interceptorsMesh[2].gameObject.GetComponent<MeshRenderer>().enabled = true;
+
 
             interceptorsMesh[0].localScale = new Vector3(interceptorsMesh[0].localScale.x / 3, interceptorsMesh[0].localScale.y, interceptorsMesh[0].localScale.z);
             interceptorsMesh[0].localPosition += new Vector3(0.33f, 0, 0);

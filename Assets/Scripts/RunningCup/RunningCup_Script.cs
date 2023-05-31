@@ -122,7 +122,7 @@ public class RunningCup_Script : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) isJumping = false;
         else if (collision.gameObject.CompareTag("Ball"))
         {
-            gameController.AddPoint();
+            //gameController.AddPoint();
             Destroy(this.gameObject);
         }
         else if(collision.gameObject.CompareTag("Wall"))

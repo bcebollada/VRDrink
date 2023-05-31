@@ -19,8 +19,7 @@ public class MobileRigController : MonoBehaviour
 
     public int miniGamesPlayed; //int to know which game we are 0 = none 1 = beerpong 2 = shootCup 3 = roullete
 
-    private int mobileRigPlayerNumber;
-
+    public int playerNumber;
 
     private void Awake()
     {
@@ -30,10 +29,15 @@ public class MobileRigController : MonoBehaviour
 
     private void Start()
     {
+        if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
+        {
+            playerNumber = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber;
+        }
+        else playerNumber = GameObject.FindGameObjectsWithTag("MobileRig").Length;
+
         if (GameObject.FindGameObjectWithTag("MobileRigPlayerNumber") == null) //mobile rig still don't have player number attached to
         {
-            mobileRigPlayerNumber = GameObject.FindGameObjectsWithTag("MobileRig").Length;
-            Debug.Log("This mobile rig is the " + mobileRigPlayerNumber + "player");
+            Debug.Log("This mobile rig is the " + playerNumber + "player");
         }
 
         if (miniGamesPlayed == 1) 
@@ -74,7 +78,7 @@ public class MobileRigController : MonoBehaviour
             var interceptorArray = GameObject.FindGameObjectsWithTag("Interceptor"); //update do action for beer pong
             foreach (var interceptor in interceptorArray)
             {
-                if (interceptor.GetComponent<InterceptorRotation>().interceptorNumber == mobileRigPlayerNumber)
+                if (interceptor.GetComponent<InterceptorRotation>().interceptorNumber == playerNumber)
                 {
                     interceptor.transform.GetChild(1).gameObject.GetComponent<RealtimeView>().RequestOwnership();
                     interceptor.transform.GetChild(1).gameObject.SetActive(true);

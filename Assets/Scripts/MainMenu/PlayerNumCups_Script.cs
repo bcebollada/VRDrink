@@ -17,15 +17,22 @@ public class PlayerNumCups_Script : MonoBehaviour
 
     private void Awake()
     {
-        macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
-        if (cupNumber == 2) myEvent = macroGameController.PlayersNum2;
-        else if (cupNumber == 3) myEvent = macroGameController.PlayersNum3;
-        if (cupNumber == 4) myEvent = macroGameController.PlayersNum4;
+
     }
 
 
     void Start()
     {
+        macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
+        if (cupNumber == 2)
+        {
+            myEvent = macroGameController.PlayersNum2;
+            print("player2");
+        }
+
+        else if (cupNumber == 3) myEvent = macroGameController.PlayersNum3;
+        if (cupNumber == 4) myEvent = macroGameController.PlayersNum4;
+
         beerEffect.SetActive(false);
         initialRotation = transform.localRotation;
     }

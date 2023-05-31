@@ -212,7 +212,7 @@ MonoBehaviour:
   cupSpawnCenter: {x: -5.93, y: 5.16, z: -3.6}
   cupSpawnSize: {x: 15.02, y: 1.33, z: 19.67}
   ballNumbers: 15
-  playerName: 
+  pointsGoal: 0
   points: 0
   pointsText: {fileID: 1712921627}
   startCountDownText: {fileID: 1712851841}
@@ -246,6 +246,8 @@ GameObject:
   m_Component:
   - component: {fileID: 168431790}
   - component: {fileID: 168431789}
+  - component: {fileID: 168431792}
+  - component: {fileID: 168431791}
   m_Layer: 0
   m_Name: MacroGameController
   m_TagString: MacroGameController
@@ -267,13 +269,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumbers: 2
   playerPlaying: Player222
-  playerShots: 00000000000000000000000000000000
-  playerNumStand: {fileID: 7316651376174600945, guid: b823bb0d434737047a71a82cb5c4c3a7, type: 3}
+  playerLocalShots: 00000000000000000000000000000000
+  playerOverallShots: 00000000000000000000000000000000
   playerSelectStartStand: {fileID: 0}
   smokeEffect: {fileID: 419743723205380860, guid: dc05619a87999b648a655b681bec2a91, type: 3}
   playerCamera: {fileID: 0}
-  miniGamesPlayed: 0
+  waitPlayersBoard: {fileID: 0}
+  miniGamesPlayed: 2
   isMainMacroController: 0
+  isMobileRig: 0
+  pointsManager: {fileID: 0}
 --- !u!4 &168431790
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +294,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &168431791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168431788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a0c5a0d6c347f4f9e40c65f4122700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Points: 0
+  player2Points: 0
+  player3Points: 0
+  player4Points: 0
+--- !u!114 &168431792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168431788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -363599832, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 1682949736}
+  _sceneViewUUID: 
+  _viewUUID: db5fae1a-b3ea-4f28-9851-0bae5d25a770
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _sceneViewDestroyWhenOwnerOrLastClientLeavesMigrated: 1
+  _sceneViewDestroyWhenLastClientLeaves: 1
+  _components:
+  - componentID: 1
+    component: {fileID: 0}
+  _childViews: []
 --- !u!1 &195136611
 GameObject:
   m_ObjectHideFlags: 0

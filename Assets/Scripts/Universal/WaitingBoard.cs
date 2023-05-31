@@ -15,12 +15,14 @@ public class WaitingBoard : MonoBehaviour
 
     private void Awake()
     {
-        macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+        macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //startStand.SetActive(false);
+
         if(macroGameController.playerNumbers == 1) //2 players playing
         {
             //deativate texts for others players
@@ -41,17 +43,17 @@ public class WaitingBoard : MonoBehaviour
         GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRig");
         if(mobileRigs.Length >= 1 && !areAllPlayersConnected)
         {
-            player2Status.text = "Connected";
+            player2Status.text = "Ready";
             if (macroGameController.playerNumbers - 1 == 0) areAllPlayersConnected = true;
         }
         if (mobileRigs.Length >= 2 && !areAllPlayersConnected)
         {
-            player3Status.text = "Connected";
+            player3Status.text = "Ready";
             if (macroGameController.playerNumbers - 2 == 0) areAllPlayersConnected = true;
         }
         if (mobileRigs.Length == 3 && !areAllPlayersConnected)
         {
-            player4Status.text = "Connected";
+            player4Status.text = "Ready";
             if (macroGameController.playerNumbers - 3 == 0) areAllPlayersConnected = true;
         }
 

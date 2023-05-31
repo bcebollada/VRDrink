@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Normal.Realtime;
+using TMPro;
 
 
 public class MacroGameController : MonoBehaviour
@@ -11,7 +12,8 @@ public class MacroGameController : MonoBehaviour
 
     public string playerPlaying;
 
-    public int[] playerShots = new int[4]; //array used to controll players points
+    public int[] playerLocalShots = new int[4]; //array used to controll players points in scpecific mini game
+    public int[] playerOverallShots = new int[4]; //array used to controll players points in macrogame
 
     public GameObject playerSelectStartStand,smokeEffect,playerCamera, waitPlayersBoard;
 
@@ -23,6 +25,9 @@ public class MacroGameController : MonoBehaviour
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
 
+    public bool isMobileRig;
+
+    public PointsManager pointsManager;
 
 
     private void Awake()
@@ -31,18 +36,36 @@ public class MacroGameController : MonoBehaviour
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-  
+        if(GameObject.FindGameObjectWithTag("PlayerPoints") != null)
+        {
+            pointsManager = GameObject.FindGameObjectWithTag("PlayerPoints").GetComponent<PointsManager>();
+        }
+
+        if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
+        {
+            playerNumbers = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers;
+        }
+
     }
 
     private void Start()
     {
+        if ((SystemInfo.deviceModel.Contains("Oculus Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) && !isMobileRig) //isnt mobile rig
+            isMobileRig = false;
+        else isMobileRig = true;
 
     }
 
     void Update()
     {
-        
+        UpdatePlayerShots();
     }
+
+    private void UpdatePlayerShots()
+    {
+
+    }
+
 
     public void PlayersSelect()
     {
@@ -50,17 +73,18 @@ public class MacroGameController : MonoBehaviour
         Destroy(playerSelectStartStand);
         //var smoke = Instantiate(smokeEffect, spawnPosition, Quaternion.identity);
         //Destroy(smoke, 3);
-        playerNumStand = Realtime.Instantiate("Players Number Stands", spawnPosition, Quaternion.identity, instantiateOptions);
+        if(!isMobileRig) playerNumStand = Realtime.Instantiate("Players Number Stands", spawnPosition, Quaternion.identity, instantiateOptions);
     }
 
     public void PlayersNum2()
     {
         playerNumbers = 1;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 1;
 
-        playerShots[0] = 0; //sets the array for the number of players
-        playerShots[1] = 0;
-        playerShots[2] = -1; //negative for players not used
-        playerShots[3] = -1;
+        playerLocalShots[0] = 0; //sets the array for the number of players
+        playerLocalShots[1] = 0;
+        playerLocalShots[2] = -1; //negative for players not used
+        playerLocalShots[3] = -1;
 
         PlayerConnecWait();
     }
@@ -68,11 +92,12 @@ public class MacroGameController : MonoBehaviour
     public void PlayersNum3()
     {
         playerNumbers = 2;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 2;
 
-        playerShots[0] = 0; //sets the array for the number of players
-        playerShots[1] = 0;
-        playerShots[2] = 0; //negative for players not used
-        playerShots[3] = -1;
+        playerLocalShots[0] = 0; //sets the array for the number of players
+        playerLocalShots[1] = 0;
+        playerLocalShots[2] = 0; //negative for players not used
+        playerLocalShots[3] = -1;
 
         PlayerConnecWait();
     }
@@ -80,25 +105,32 @@ public class MacroGameController : MonoBehaviour
     public void PlayersNum4()
     {
         playerNumbers = 3;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 3;
 
-        playerShots[0] = 0; //sets the array for the number of players
-        playerShots[1] = 0;
-        playerShots[2] = 0; 
-        playerShots[3] = 0;
+        playerLocalShots[0] = 0; //sets the array for the number of players
+        playerLocalShots[1] = 0;
+        playerLocalShots[2] = 0; 
+        playerLocalShots[3] = 0;
 
         PlayerConnecWait();
     }
 
-    public void AddShots(int player1Shot, int player2Shot, int player3Shot, int player4Shot)
+    public void AddShotsLocalGame(int player1Shot, int player2Shot, int player3Shot, int player4Shot)
     {
-        playerShots[0] = player1Shot;
-        playerShots[1] = player2Shot;
-        if(playerNumbers >= 2) playerShots[2] = player3Shot;
-        if(playerNumbers == 3) playerShots[3] = player4Shot;
+        playerLocalShots[0] = player1Shot;
+        playerLocalShots[1] = player2Shot;
+        if(playerNumbers >= 2) playerLocalShots[2] = player3Shot;
+        if(playerNumbers == 3) playerLocalShots[3] = player4Shot;
+    }
+
+    public void AddShotsOverall(int pointsParameter, int player)
+    {
+
     }
 
     public void PlayerConnecWait() //waits for all player to connect in order to continue
     {
+        if (isMobileRig) return; //just vr needs to instantiate
         Realtime.Instantiate("WaitPlayersBoard", playerNumStand.transform.position, playerNumStand.transform.rotation, instantiateOptions);
         Realtime.Destroy(playerNumStand);
     }
@@ -106,21 +138,42 @@ public class MacroGameController : MonoBehaviour
     public void NextGame() //checks how many players are planning depending on who is playing, restarts all the games
     {
         Debug.Log("Next Game");
-        if (miniGamesPlayed == 0)
+
+        if (SceneManager.GetActiveScene().name == "MainMenu_Scene" || SceneManager.GetActiveScene().name == "MainMenuMobileRig_Scene")
         {
             Debug.Log("Loading BeerPong");
-            SceneManager.LoadScene("BeerPong_Scene");
+
+            if (!isMobileRig) //isnt mobile rig
+            {
+                SceneManager.LoadScene("BeerPong_Scene");
+            }
+
+            else
+            {
+                SceneManager.LoadScene("BeerPong_MobileRigScene"); //is mobile rig
+            }
+   
             miniGamesPlayed = 1;
         }
 
-        else if (miniGamesPlayed == 1)
+        else if (SceneManager.GetActiveScene().name == "BeerPong_Scene" || SceneManager.GetActiveScene().name == "BeerPong_MobileRigScene")
         {
             Debug.Log("Loading RunningCup");
-            SceneManager.LoadScene("RunningCup_Scene");
+
+            if (!isMobileRig) //isnt mobile rig
+            {
+                SceneManager.LoadScene("RunningCup_Scene");
+            }
+
+            else
+            {
+                SceneManager.LoadScene("RunningCupMobileRig_Scene"); //is mobile rig
+            }
+
             miniGamesPlayed = 2;
         }
 
-        else if (miniGamesPlayed == 2)
+        else if (SceneManager.GetActiveScene().name == "RunningCup_Scene" || SceneManager.GetActiveScene().name == "RunningCupMobileRig_Scene")
         {
             if (playerNumbers == 1 && playerPlaying != "Player2")
             {
@@ -201,7 +254,7 @@ public class MacroGameController : MonoBehaviour
             {
                 if (obj.GetComponent<MacroGameController>().miniGamesPlayed < miniGamesPlayed && obj != this.gameObject) Destroy(obj); ; //checks which macro has made more games, destroys the lower one
             }
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
             playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         }

@@ -85,9 +85,16 @@ public class RunningCupGameController : MonoBehaviour
         Gizmos.DrawCube(cupSpawnCenter, cupSpawnSize);
     }
 
-    public void AddPoint()
+    public void AddPoint(int playerNumberHit)
     {
-        if(timerRunning) points += 1;
+        if (!timerRunning) return;
+            
+        points += 1;
+
+        if(macroGameController.pointsManager != null)
+        {
+            macroGameController.pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
+        }
     }
 
     void TimerComplete()
@@ -95,11 +102,14 @@ public class RunningCupGameController : MonoBehaviour
 
         if (pointsGoal - points == 0) //vr player won
         {
-            macroGameController.AddShots(0, 1, 1, 1);
+            macroGameController.pointsManager.AddPoints(2, 1);
+            macroGameController.pointsManager.AddPoints(3, 1);
+            macroGameController.pointsManager.AddPoints(4, 1);
         }
-        else //vr player lost
+        else if(pointsGoal - points == 5) //vr player lost completly
         {
-            macroGameController.AddShots(1, 0, 0, 0);
+            macroGameController.pointsManager.AddPoints(1, 2);
+
         }
 
         timerRunning = false;

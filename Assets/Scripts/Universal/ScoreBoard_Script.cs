@@ -32,7 +32,7 @@ public class ScoreBoard_Script : MonoBehaviour
         }
 
 
-        playerShots = macroGameController.playerShots;
+        playerShots = macroGameController.playerLocalShots;
 
         player1Score.text = $"Take {playerShots[0]} shots";
         player2Score.text = $"Take {playerShots[1]} shots";

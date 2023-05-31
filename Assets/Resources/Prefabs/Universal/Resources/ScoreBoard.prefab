@@ -1883,6 +1883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 107854063091668181}
     m_Modifications:
+    - target: {fileID: 2433625226441024387, guid: 9affb9885510a6445b234ba72c4fbae9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3107456535979480594, guid: 9affb9885510a6445b234ba72c4fbae9, type: 3}
       propertyPath: m_Name
       value: StartGameStand

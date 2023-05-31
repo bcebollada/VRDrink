@@ -14,11 +14,25 @@ public class RunningCupMobileRigController : MonoBehaviour
 
     private RunningCupGameController gameController;
 
+    private int playerNumber;
 
+    private MacroGameController macroGameController;
+
+    public bool isOnGround;
+
+
+        
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         deadTransform = GameObject.Find("MobileRigDeadPos").transform;
+        macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+
+        if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
+        {
+            playerNumber = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber;
+        }
+        else playerNumber = 1;
     }
 
     private void Start()
@@ -30,12 +44,13 @@ public class RunningCupMobileRigController : MonoBehaviour
 
         //put movbile rig in random position on scene
         transform.position = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -44,7 +59,7 @@ public class RunningCupMobileRigController : MonoBehaviour
         Vector3 currentVelocity = rb.velocity;
         Vector3 targetVelocity = transform.forward * joystick.Vertical * moveSpeed;
         Vector3 velocityChange = targetVelocity - currentVelocity;
-        rb.AddForce(velocityChange, ForceMode.Acceleration);
+        rb.AddForce(velocityChange, ForceMode.Force);
 
 
         // Rotate the GameObject based on joystick input
@@ -53,7 +68,9 @@ public class RunningCupMobileRigController : MonoBehaviour
 
     public void Jump()
     {
+        if (!isOnGround || rb.velocity.y > 0.1) return;
         rb.AddForce(transform.up * jumpForce);
+        isOnGround = false;
     }
 
     public void Hit() //need to run this when ball hits the cup
@@ -64,7 +81,10 @@ public class RunningCupMobileRigController : MonoBehaviour
 
         cup.SetActive(false);
 
-        gameController.AddPoint();
+        gameController.AddPoint(playerNumber);
+        if (playerNumber == 1) macroGameController.AddShotsLocalGame(0, 1, 0, 0);
+        else if (playerNumber == 2) macroGameController.AddShotsLocalGame(0, 0, 1, 0);
+        else if (playerNumber == 3) macroGameController.AddShotsLocalGame(0, 0, 0, 1);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -75,6 +95,12 @@ public class RunningCupMobileRigController : MonoBehaviour
             Debug.Log("Cup hitted by ball");
 
             Hit();
+        }
+
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (rb.velocity.y < 0.01) isOnGround = true;
+            else isOnGround = false;
         }
     }
 }

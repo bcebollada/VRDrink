@@ -16,6 +16,9 @@ TagManager:
   - Interceptor
   - MobileRig
   - MobileRigPlayerNumber
+  - MobileRigGameController
+  - PlayerNumber
+  - PlayerPoints
   layers:
   - Default
   - TransparentFX
