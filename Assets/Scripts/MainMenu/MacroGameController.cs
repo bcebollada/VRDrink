@@ -86,6 +86,12 @@ public class MacroGameController : MonoBehaviour
         playerLocalShots[2] = -1; //negative for players not used
         playerLocalShots[3] = -1;
 
+        GameObject[] cups = GameObject.FindGameObjectsWithTag("Cup");
+        foreach (var cup in cups)
+        {
+            Realtime.Destroy(cup);
+        }
+
         PlayerConnecWait();
     }
 
@@ -99,6 +105,12 @@ public class MacroGameController : MonoBehaviour
         playerLocalShots[2] = 0; //negative for players not used
         playerLocalShots[3] = -1;
 
+        GameObject[] cups = GameObject.FindGameObjectsWithTag("Cup");
+        foreach (var cup in cups)
+        {
+            Realtime.Destroy(cup);
+        }
+
         PlayerConnecWait();
     }
 
@@ -111,6 +123,12 @@ public class MacroGameController : MonoBehaviour
         playerLocalShots[1] = 0;
         playerLocalShots[2] = 0; 
         playerLocalShots[3] = 0;
+
+        GameObject[] cups = GameObject.FindGameObjectsWithTag("Cup");
+        foreach (var cup in cups)
+        {
+            Realtime.Destroy(cup);
+        }
 
         PlayerConnecWait();
     }

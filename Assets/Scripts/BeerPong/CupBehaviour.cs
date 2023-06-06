@@ -11,7 +11,7 @@ public class CupBehaviour : MonoBehaviour
     public GameObject beerEffect;
     private float secondsSpilling;
 
-    [SerializeField] private UnityEvent myEvent;
+    [SerializeField] public UnityEvent myEvent;
 
 
     void Start()

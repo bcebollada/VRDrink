@@ -71,6 +71,13 @@ public class RunningCupGameController : MonoBehaviour
 
     public void GameStart()
     {
+        //remove instructions
+        GameObject[] instructions = GameObject.FindGameObjectsWithTag("Instructions");
+        foreach (var instruction in instructions)
+        {
+            instruction.SetActive(false);
+        }
+
         Instantiate(pistol, startStand.transform.position, Quaternion.identity);
         gameStartCountdown = true;
         var smoke = Instantiate(smokeEffect, startStand.transform.position, Quaternion.identity);

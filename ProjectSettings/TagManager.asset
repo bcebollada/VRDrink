@@ -19,6 +19,7 @@ TagManager:
   - MobileRigGameController
   - PlayerNumber
   - PlayerPoints
+  - Instructions
   layers:
   - Default
   - TransparentFX

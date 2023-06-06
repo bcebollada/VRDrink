@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using HurricaneVR.Framework.Core.UI;
+using Normal.Realtime;
 
 public class ScoreBoard_Script : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class ScoreBoard_Script : MonoBehaviour
     private MacroGameController macroGameController;
     private int[] playerShots;
     private HVRInputModule hvrInputModule;
+    private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    public Transform cupSpawn;
+
 
     private void Awake()
     {
+        instantiateOptions.ownedByClient = true;
 
     }
 
@@ -23,6 +28,12 @@ public class ScoreBoard_Script : MonoBehaviour
         //find macroController and get shots from him
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
         player2Score.text = (GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>().ToString());
+
+        if (!macroGameController.isMobileRig) //spawn cup
+        {
+            var cup = Realtime.Instantiate("Cup", cupSpawn.position, Quaternion.identity, instantiateOptions);
+            cup.GetComponent<CupBehaviour>().myEvent.AddListener(ButtonPress); //link cup behavior action
+        }
 
 
         if (SystemInfo.deviceModel.Contains("Quest 2") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile

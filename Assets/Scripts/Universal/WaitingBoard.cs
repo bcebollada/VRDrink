@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Normal.Realtime;
+
 
 public class WaitingBoard : MonoBehaviour
 {
@@ -13,8 +15,15 @@ public class WaitingBoard : MonoBehaviour
 
     public GameObject startStand;
 
+    private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+
+    public Transform cupSpawn;
+
+
+
     private void Awake()
     {
+        instantiateOptions.ownedByClient = true;
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
     }
 
@@ -23,7 +32,13 @@ public class WaitingBoard : MonoBehaviour
     {
         //startStand.SetActive(false);
 
-        if(macroGameController.playerNumbers == 1) //2 players playing
+        if (!macroGameController.isMobileRig) //spawn cup
+        {
+            var cup = Realtime.Instantiate("Cup", cupSpawn.position, Quaternion.identity, instantiateOptions);
+            cup.GetComponent<CupBehaviour>().myEvent.AddListener(ButtonPress); //link cup behavior action
+        }
+
+        if (macroGameController.playerNumbers == 1) //2 players playing
         {
             //deativate texts for others players
             player3Status.gameObject.transform.parent.gameObject.SetActive(false);

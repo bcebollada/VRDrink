@@ -1799,6 +1799,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4342485644101283410, guid: 9affb9885510a6445b234ba72c4fbae9, type: 3}
+      propertyPath: _viewUUID
+      value: 2e3f523e-1e18-4626-895e-caf4628eec83
+      objectReference: {fileID: 0}
     - target: {fileID: 7913208916907206918, guid: 9affb9885510a6445b234ba72c4fbae9, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4490,6 +4494,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    - target: {fileID: 4213184333616342682, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Id
+      value: 297e87b5-bbec-46dd-b3d1-1a8bdcb4f715
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213184333616342682, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: m_TrackingStateInput.m_Action.m_Name
+      value: Tracking State Input
+      objectReference: {fileID: 0}
     - target: {fileID: 8560143638468229796, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.292

@@ -160,6 +160,12 @@ public class BeerGameController : MonoBehaviour
     {
         SetInterceptors();
 
+        //remove instructions
+        GameObject[] instructions = GameObject.FindGameObjectsWithTag("Instructions");
+        foreach (var instruction in instructions)
+        {
+            instruction.SetActive(false);
+        }
 
         gameStartCountdown = true;  
 
