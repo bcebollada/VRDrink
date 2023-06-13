@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4386823714252836}
   - component: {fileID: 33538715261311402}
   - component: {fileID: 23943565217316042}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: MouthMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4903995628154096}
   - component: {fileID: 33393833045040206}
   - component: {fileID: 23123477684580134}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: HeadModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4187294060141768}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: MouthPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 4501054940117704}
   - component: {fileID: 33019732518430544}
   - component: {fileID: 23915046626809702}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: LeftHandModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 4798741242481448}
   - component: {fileID: 33180042161753754}
   - component: {fileID: 23206906674170422}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: RightHandModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

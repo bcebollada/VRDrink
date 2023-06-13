@@ -54,18 +54,18 @@ public class MobileRig_MainMenu_Script : MonoBehaviour
 
         playerNumberText.text = $"Your are Player {playerNumber}";
         GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber = playerNumber; //saves variable to dont destroy on load object
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (macroGameController.isMobileRig) debugText.text = SceneManager.GetActiveScene().name;
-        else debugText.text = "not mob";
+        
     }
 
     public void Button()
     {
-
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<PlayersNumberCommunicator>().SetNumber(1);
     }
 
 }

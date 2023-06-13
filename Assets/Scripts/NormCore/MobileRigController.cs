@@ -13,7 +13,7 @@ public class MobileRigController : MonoBehaviour
 
     private MacroGameController macroGameController;
 
-    public TMP_Text text;
+    public TMP_Text text, debugText;
 
     public GameObject scoreBoard;
 
@@ -33,7 +33,7 @@ public class MobileRigController : MonoBehaviour
         {
             playerNumber = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber;
         }
-        else playerNumber = GameObject.FindGameObjectsWithTag("MobileRig").Length;
+        else playerNumber = GameObject.FindGameObjectsWithTag("MobileRig").Length + 1;
 
         if (GameObject.FindGameObjectWithTag("MobileRigPlayerNumber") == null) //mobile rig still don't have player number attached to
         {
@@ -54,7 +54,7 @@ public class MobileRigController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateActions(); //update what action main buitton on mobile rig will do
+
 
     }
 

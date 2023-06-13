@@ -28,25 +28,29 @@ public class BallScript : MonoBehaviour
 
     public void Grabbed()
     {
-        GetComponent<RealtimeTransform>().ClearOwnership();
-        GetComponent<RealtimeView>().ClearOwnership();
-        GetComponent<RealtimeView>().RequestOwnership();
-        GetComponent<RealtimeTransform>().RequestOwnership();
         transparentSphere.SetActive(false);
         rb.isKinematic = false;
+        gameController.Invoke("SpawnBall", 2f);
+
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.layer);
+        GetComponent<AudioSource>().Play();
 
-        if (collision.gameObject.layer != 21)
+        if (collision.gameObject.layer != 21 && collision.gameObject.layer != 20)
         {
             Debug.Log("Ball hit enviorment");
-            Destroy(this.gameObject, 1);
-            gameController.Invoke("SpawnBall", 1.5f);
+            StartCoroutine(DestroyRealtimeObject(this.gameObject, 1));
         }
+    }
+
+    private IEnumerator DestroyRealtimeObject(GameObject objectToDestroy, float secondsToDestroy)
+    {
+        yield return new WaitForSeconds(secondsToDestroy);
+        Realtime.Destroy(objectToDestroy);
     }
 
 }

@@ -22,4 +22,9 @@ public class PistolBall_Script : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

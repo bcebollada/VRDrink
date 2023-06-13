@@ -11,14 +11,20 @@ public class ScoreBoard_Script : MonoBehaviour
     private MacroGameController macroGameController;
     private int[] playerShots;
     private HVRInputModule hvrInputModule;
+
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
+
+
     public Transform cupSpawn;
 
 
     private void Awake()
     {
-        instantiateOptions.ownedByClient = true;
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
+        instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
     }
 
     private void Start()

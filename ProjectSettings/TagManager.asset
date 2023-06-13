@@ -20,6 +20,8 @@ TagManager:
   - PlayerNumber
   - PlayerPoints
   - Instructions
+  - SceneManagment
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -48,7 +50,7 @@ TagManager:
   - PlayerWall
   - RunningCup
   - Wall
-  - 
+  - AvatarMesh
   - 
   - 
   - 

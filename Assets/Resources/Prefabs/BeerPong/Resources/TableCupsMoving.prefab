@@ -380,6 +380,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2381176217069264736}
     m_Modifications:
     - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
       propertyPath: pointsWorth
       value: 2
       objectReference: {fileID: 0}
@@ -453,6 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 781971015388552016, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+    - {fileID: 781971015388552017, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
 --- !u!4 &2419078646184255890 stripped
 Transform:
@@ -477,6 +482,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2381176217069264736}
     m_Modifications:
+    - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
       propertyPath: pointsWorth
       value: 2
@@ -551,6 +560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 781971015388552016, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+    - {fileID: 781971015388552017, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
 --- !u!114 &3382167518452264133 stripped
 MonoBehaviour:
@@ -575,6 +585,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2381176217069264736}
     m_Modifications:
+    - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2711479320170064375, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
       propertyPath: pointsWorth
       value: 2
@@ -649,6 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 781971015388552016, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
+    - {fileID: 781971015388552017, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5928cd4388a3d0149b1935e7e34bd992, type: 3}
 --- !u!114 &3187135055018610588 stripped
 MonoBehaviour:

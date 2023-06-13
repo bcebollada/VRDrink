@@ -71,6 +71,8 @@ public class RunningCupMobileRigController : MonoBehaviour
         if (!isOnGround || rb.velocity.y > 0.1) return;
         rb.AddForce(transform.up * jumpForce);
         isOnGround = false;
+
+        GetComponent<AudioSource>().Play();
     }
 
     public void Hit() //need to run this when ball hits the cup

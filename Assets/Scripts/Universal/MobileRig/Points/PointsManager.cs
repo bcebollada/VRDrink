@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Normal.Realtime;
 
 public class PointsManager : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class PointsManager : MonoBehaviour
     public int player1Points, player2Points, player3Points, player4Points;
 
 
+
     private void Awake()
     {
         player1Model = GetComponent<Points1ModelCommunicator>();
@@ -20,6 +23,8 @@ public class PointsManager : MonoBehaviour
         player4Model = GetComponent<Points4ModelCommunicator>();
 
         DontDestroyOnLoad(this.gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
 
@@ -54,5 +59,10 @@ public class PointsManager : MonoBehaviour
     private void Update()
     {
         UpdatePoints();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
     }
 }

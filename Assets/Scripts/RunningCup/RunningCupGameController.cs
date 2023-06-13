@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Normal.Realtime;
 
 
 public class RunningCupGameController : MonoBehaviour
@@ -26,12 +27,19 @@ public class RunningCupGameController : MonoBehaviour
 
     public GameObject[] obstacles = new GameObject[14];
 
+    private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
+
 
     private void Awake()
     {
-        if(!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
-        center = startStand.transform.position;
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
+        instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
+
+        if (!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+        center = startStand.transform.position;
     }
 
     private void Start()
@@ -78,7 +86,7 @@ public class RunningCupGameController : MonoBehaviour
             instruction.SetActive(false);
         }
 
-        Instantiate(pistol, startStand.transform.position, Quaternion.identity);
+        if(!macroGameController.isMobileRig) Realtime.Instantiate("Pistol", startStand.transform.position, Quaternion.identity, instantiateOptions);
         gameStartCountdown = true;
         var smoke = Instantiate(smokeEffect, startStand.transform.position, Quaternion.identity);
         Destroy(smoke, 3);
@@ -102,6 +110,9 @@ public class RunningCupGameController : MonoBehaviour
         {
             macroGameController.pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
         }
+
+        if (points == GameObject.FindGameObjectsWithTag("MobileRig").Length) TimerComplete(); //killed all mobile players
+
     }
 
     void TimerComplete()
@@ -134,7 +145,8 @@ public class RunningCupGameController : MonoBehaviour
 
         var smoke = Instantiate(smokeEffect, center, Quaternion.identity);
         Destroy(smoke, 3);
-        Instantiate(scoreBoard, center, Quaternion.Euler(0, -90f, 0));
+
+        if(!macroGameController.isMobileRig) Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, -90f, 0), instantiateOptions);
     }
 
     private void SpawnCups()

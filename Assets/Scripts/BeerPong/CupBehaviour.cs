@@ -11,6 +11,8 @@ public class CupBehaviour : MonoBehaviour
     public GameObject beerEffect;
     private float secondsSpilling;
 
+    public bool nextGameEvent;
+
     [SerializeField] public UnityEvent myEvent;
 
 
@@ -18,6 +20,9 @@ public class CupBehaviour : MonoBehaviour
     {
         beerEffect.SetActive(false);
         initialRotation = transform.localRotation;
+
+        MacroGameController macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
+        if (nextGameEvent && myEvent == null) myEvent.AddListener(macroGameController.NextGame);
     }
 
     void Update()

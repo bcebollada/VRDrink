@@ -7,14 +7,24 @@ using Normal.Realtime;
 public class InstantiatePlayerNumberCups : MonoBehaviour
 {
     public Transform spawnPosition;
+
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
+
     public int cupNumber;
 
+
+    private void Awake()
+    {
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
+
+        instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        instantiateOptions.ownedByClient = true;
 
         if ((SystemInfo.deviceModel.Contains("Oculus Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor))
         {

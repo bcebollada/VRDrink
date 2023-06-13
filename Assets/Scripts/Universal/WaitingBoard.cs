@@ -16,6 +16,7 @@ public class WaitingBoard : MonoBehaviour
     public GameObject startStand;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
 
     public Transform cupSpawn;
 
@@ -23,20 +24,23 @@ public class WaitingBoard : MonoBehaviour
 
     private void Awake()
     {
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
+
         instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
+
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //startStand.SetActive(false);
-
         if (!macroGameController.isMobileRig) //spawn cup
         {
             var cup = Realtime.Instantiate("Cup", cupSpawn.position, Quaternion.identity, instantiateOptions);
-            cup.GetComponent<CupBehaviour>().myEvent.AddListener(ButtonPress); //link cup behavior action
         }
+
+        StartCoroutine(LinkEvent());
 
         if (macroGameController.playerNumbers == 1) //2 players playing
         {
@@ -73,6 +77,17 @@ public class WaitingBoard : MonoBehaviour
         }
 
         if (areAllPlayersConnected) startStand.SetActive(true);
+    }
+
+    private IEnumerator LinkEvent()
+    {
+        yield return new WaitForSeconds(2);
+
+        GameObject[] cups = GameObject.FindGameObjectsWithTag("Cup");
+        foreach (var cup in cups)
+        {
+            cup.GetComponent<CupBehaviour>().myEvent.AddListener(ButtonPress); //link cup behavior action
+        }
     }
 
     public void ButtonPress()

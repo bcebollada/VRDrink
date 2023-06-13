@@ -30,11 +30,16 @@ public class BeerGameController : MonoBehaviour
     public bool isDebugMode;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
+
 
 
     private void Awake()
     {
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
+
         instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
 
         if (!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
     }
@@ -81,6 +86,8 @@ public class BeerGameController : MonoBehaviour
         if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
             UpdateTablesMainClient(); //if is in the headset, create tables
 
+        if (ball == null && timerRunning) SpawnBall();
+
     }
 
 
@@ -117,7 +124,7 @@ public class BeerGameController : MonoBehaviour
         if (playerName == "Player3") macroGameController.playerShots[2] += points;
         if (playerName == "Player4") macroGameController.playerShots[3] += points;*/
 
-        if(pointsGoal-points == 0) //vr player won
+        if(pointsGoal-points <= 0) //vr player won
         {
             macroGameController.AddShotsLocalGame(0, 1, 1, 1);
         }
@@ -240,15 +247,11 @@ public class BeerGameController : MonoBehaviour
 
     public void SpawnBall()
     {
-        if (ball != null) return;
+        //if (ball != null) return;
+        if (macroGameController.isMobileRig) return;
 
         ball = Realtime.Instantiate("Ball", ballSpawner.position, Quaternion.identity, instantiateOptions);
         //ball = Instantiate(ballPrefab, ballSpawner.position, Quaternion.identity);
-    }
-
-    public void LoadScene()
-    {
-        SceneManager.LoadScene("FlipCup_Scene");
     }
 
     private IEnumerator DestroyRealtimeObject(GameObject objectToDestroy, float secondsToDestroy)

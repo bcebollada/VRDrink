@@ -24,32 +24,42 @@ public class MacroGameController : MonoBehaviour
     public bool isMainMacroController;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
+    private Realtime realtimeInstance;
 
     public bool isMobileRig;
 
     public PointsManager pointsManager;
 
+    public MiniGamesPlayedCommunicator miniGamesPlayedCommunicator;
+
 
     private void Awake()
     {
+        miniGamesPlayedCommunicator = GetComponent<MiniGamesPlayedCommunicator>();
+        realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
+
         instantiateOptions.ownedByClient = true;
+        instantiateOptions.useInstance = realtimeInstance;
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        if(GameObject.FindGameObjectWithTag("PlayerPoints") != null)
+        if (GameObject.FindGameObjectWithTag("PlayerPoints") != null)
         {
             pointsManager = GameObject.FindGameObjectWithTag("PlayerPoints").GetComponent<PointsManager>();
         }
 
         if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
         {
-            playerNumbers = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers;
+            playerNumbers = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<PlayersNumberCommunicator>().numberOfPlayers;
         }
-
     }
 
     private void Start()
     {
+        if(GameObject.FindGameObjectWithTag("SceneManagment") != null)
+            miniGamesPlayedCommunicator = GameObject.FindGameObjectWithTag("SceneManagment").GetComponent<MiniGamesPlayedCommunicator>();
+
+
         if ((SystemInfo.deviceModel.Contains("Oculus Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) && !isMobileRig) //isnt mobile rig
             isMobileRig = false;
         else isMobileRig = true;
@@ -59,6 +69,14 @@ public class MacroGameController : MonoBehaviour
     void Update()
     {
         UpdatePlayerShots();
+
+        if(miniGamesPlayedCommunicator != null) 
+        {
+            if (miniGamesPlayed != miniGamesPlayedCommunicator.miniGamesPlayed) //if one of the clients changed scene and the other one didn't, this will activate
+            {
+                StartCoroutine(ChangeScene());
+            }
+        }
     }
 
     private void UpdatePlayerShots()
@@ -79,7 +97,8 @@ public class MacroGameController : MonoBehaviour
     public void PlayersNum2()
     {
         playerNumbers = 1;
-        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 1;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<PlayersNumberCommunicator>().SetNumber(1);
+
 
         playerLocalShots[0] = 0; //sets the array for the number of players
         playerLocalShots[1] = 0;
@@ -98,7 +117,8 @@ public class MacroGameController : MonoBehaviour
     public void PlayersNum3()
     {
         playerNumbers = 2;
-        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 2;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<PlayersNumberCommunicator>().SetNumber(2);
+
 
         playerLocalShots[0] = 0; //sets the array for the number of players
         playerLocalShots[1] = 0;
@@ -117,7 +137,7 @@ public class MacroGameController : MonoBehaviour
     public void PlayersNum4()
     {
         playerNumbers = 3;
-        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().numberOfPlayers = 3;
+        GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<PlayersNumberCommunicator>().SetNumber(3);
 
         playerLocalShots[0] = 0; //sets the array for the number of players
         playerLocalShots[1] = 0;
@@ -159,36 +179,15 @@ public class MacroGameController : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "MainMenu_Scene" || SceneManager.GetActiveScene().name == "MainMenuMobileRig_Scene")
         {
-            Debug.Log("Loading BeerPong");
+            if (miniGamesPlayedCommunicator == null) StartCoroutine(ChangeScene());
+            else miniGamesPlayedCommunicator.SetMiniGamesPlayed(1);
 
-            if (!isMobileRig) //isnt mobile rig
-            {
-                SceneManager.LoadScene("BeerPong_Scene");
-            }
-
-            else
-            {
-                SceneManager.LoadScene("BeerPong_MobileRigScene"); //is mobile rig
-            }
-   
-            miniGamesPlayed = 1;
         }
 
         else if (SceneManager.GetActiveScene().name == "BeerPong_Scene" || SceneManager.GetActiveScene().name == "BeerPong_MobileRigScene")
         {
-            Debug.Log("Loading RunningCup");
-
-            if (!isMobileRig) //isnt mobile rig
-            {
-                SceneManager.LoadScene("RunningCup_Scene");
-            }
-
-            else
-            {
-                SceneManager.LoadScene("RunningCupMobileRig_Scene"); //is mobile rig
-            }
-
-            miniGamesPlayed = 2;
+            if (miniGamesPlayedCommunicator == null) StartCoroutine(ChangeScene());
+            else miniGamesPlayedCommunicator.SetMiniGamesPlayed(2);
         }
 
         else if (SceneManager.GetActiveScene().name == "RunningCup_Scene" || SceneManager.GetActiveScene().name == "RunningCupMobileRig_Scene")
@@ -214,6 +213,43 @@ public class MacroGameController : MonoBehaviour
                 miniGamesPlayed = 1;
             }
         }
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2); //add a delay so info can pass to all clients
+
+        if (SceneManager.GetActiveScene().name == "MainMenu_Scene" || SceneManager.GetActiveScene().name == "MainMenuMobileRig_Scene")
+        {
+            Debug.Log("Loading BeerPong");
+            miniGamesPlayed = 1;
+
+            if (!isMobileRig) //isnt mobile rig
+            {
+                SceneManager.LoadScene("BeerPong_Scene");
+            }
+
+            else
+            {
+                SceneManager.LoadScene("BeerPong_MobileRigScene"); //is mobile rig
+            }
+        }
+
+        else if (SceneManager.GetActiveScene().name == "BeerPong_Scene" || SceneManager.GetActiveScene().name == "BeerPong_MobileRigScene")
+        {
+            Debug.Log("Loading RunningCup");
+            miniGamesPlayed = 2;
+
+            if (!isMobileRig) //isnt mobile rig
+            {
+                SceneManager.LoadScene("RunningCup_Scene");
+            }
+
+            else
+            {
+                SceneManager.LoadScene("RunningCupMobileRig_Scene"); //is mobile rig
+            }
+        } 
     }
 
     public void ChangePlayer()
@@ -264,7 +300,7 @@ public class MacroGameController : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
-        if (isMainMacroController)
+        /*if (isMainMacroController)
         {
             GameObject[] objs = GameObject.FindGameObjectsWithTag("MacroGameController");
 
@@ -275,7 +311,7 @@ public class MacroGameController : MonoBehaviour
             //DontDestroyOnLoad(this.gameObject);
             playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
-        }
+        }*/
     }
 
     // called when the game is terminated
@@ -284,5 +320,5 @@ public class MacroGameController : MonoBehaviour
         Debug.Log("OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
 }
+

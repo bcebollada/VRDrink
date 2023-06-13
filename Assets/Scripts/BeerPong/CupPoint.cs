@@ -10,7 +10,7 @@ public class CupPoint : MonoBehaviour
 
     private void Awake()
     {
-        gameController = GameObject.Find("GameController").GetComponent<BeerGameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BeerGameController>();
         
     }
     // Start is called before the first frame update
@@ -31,8 +31,8 @@ public class CupPoint : MonoBehaviour
         {
             Debug.Log("Ball enter cup");
             gameController.AddPoint(pointsWorth);
-            Destroy(other.gameObject, 3);
-            gameController.SpawnBall();
+            //Destroy(other.gameObject, 3);
+            //gameController.SpawnBall();
         }
     }
 }

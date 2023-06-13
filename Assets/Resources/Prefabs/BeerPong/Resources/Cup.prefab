@@ -194,7 +194,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781971015388552111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6863864f278a545b66e94f66af8e36, type: 3}
   m_Name: 
@@ -212,8 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd8865e2fea3d247a44fc1080f8ade8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shouldSpillDrink: 0
+  shouldSpillDrink: 1
   beerEffect: {fileID: 9027685989918048946}
+  nextGameEvent: 1
   myEvent:
     m_PersistentCalls:
       m_Calls: []
