@@ -7,6 +7,8 @@ public class RequestOwnership : MonoBehaviour
 {
     private bool hasRequested;
 
+    public bool requestToMobile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +18,16 @@ public class RequestOwnership : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<RealtimeView>().room.connected && !hasRequested)
+        if (GetComponent<RealtimeView>().room.connected && !hasRequested && !requestToMobile)
         {
             if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) 
                 StartCoroutine("RequestOwenerShip"); //runs just on quest or  PC
+        }
+
+        else if (GetComponent<RealtimeView>().room.connected && !hasRequested && requestToMobile) //request for mobile
+        {
+            if (!SystemInfo.deviceModel.Contains("Quest") && !SystemInfo.deviceModel.Contains("Raider") && Application.platform != RuntimePlatform.WindowsEditor)
+                StartCoroutine("RequestOwenerShip"); //runs just on mobile
         }
     }
 

@@ -595,6 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47270b143808046499ca5fb76796f659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requestToMobile: 1
 --- !u!1 &6757225537814796500
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47270b143808046499ca5fb76796f659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requestToMobile: 1
 --- !u!54 &493440338722015086
 Rigidbody:
   m_ObjectHideFlags: 0

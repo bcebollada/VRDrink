@@ -90,14 +90,14 @@ public class InterceptorRotation : MonoBehaviour
     }
     private void Update()
     {
-        if (interceptorNumber == 1) playAnimation = interceptorBool.activateInterceptor1;
-        else if (interceptorNumber == 2) playAnimation = interceptorBool.activateInterceptor2;
-        else if (interceptorNumber == 3) playAnimation = interceptorBool.activateInterceptor3;
+        if (interceptorNumber == 2) playAnimation = interceptorBool.activateInterceptor1;
+        else if (interceptorNumber == 3) playAnimation = interceptorBool.activateInterceptor2;
+        else if (interceptorNumber == 4) playAnimation = interceptorBool.activateInterceptor3;
 
         //playAnimation = interceptorBool.playAnimation;
 
         // Check if the bool is true and the animation isn't already playing
-        if (playAnimation && !isRotating && !isMobileRig)
+        if (playAnimation && !isRotating && isMobileRig)
         {
             Debug.Log("Interceptor rotating");
             isRotating = true;
@@ -107,7 +107,7 @@ public class InterceptorRotation : MonoBehaviour
 
     public void AnimationComplete()
     {
-        interceptorBool.SetBool(false, interceptorNumber);
+        interceptorBool.SetBool(false, interceptorNumber - 1);
 
         Debug.Log("Interceptor rotating complete");
 
@@ -117,8 +117,7 @@ public class InterceptorRotation : MonoBehaviour
     public void ActivateInterceptor()
     {
         Debug.Log("Activating Interceptor");
-        interceptorBool.SetBool(true, interceptorNumber);
+        interceptorBool.SetBool(true, interceptorNumber - 1);
         Debug.Log("Interceptor bool set");
-
     }
 }

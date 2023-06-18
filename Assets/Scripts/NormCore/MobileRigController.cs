@@ -47,7 +47,17 @@ public class MobileRigController : MonoBehaviour
             transform.parent.rotation = spawnTransform.rotation;
         }
 
-        UpdateActions(); // update main features based on the mini game number
+        var interceptorArray = GameObject.FindGameObjectsWithTag("Interceptor"); //update do action for beer pong
+        foreach (var interceptor in interceptorArray)
+        {
+            if (interceptor.GetComponent<InterceptorRotation>().interceptorNumber == playerNumber)
+            {
+                //interceptor.transform.GetChild(1).gameObject.GetComponent<RealtimeView>().RequestOwnership();
+                //interceptor.transform.GetChild(1).gameObject.SetActive(true);
+                eventToPerform.AddListener(interceptor.GetComponent<InterceptorRotation>().ActivateInterceptor);
+            }
+
+        }
     }
 
 
@@ -63,39 +73,6 @@ public class MobileRigController : MonoBehaviour
         text.text = "action";
         eventToPerform.Invoke();
 
-    }
-
-    private void UpdateActions()
-    {
-        if (miniGamesPlayed == 0)
-        {
-            eventToPerform = null; //update do action for main menu
-        }
-        else if (miniGamesPlayed == 1)
-        {
-            //var interceptor = GameObject.FindGameObjectWithTag("Interceptor").GetComponent<InterceptorRotation>();
-
-            var interceptorArray = GameObject.FindGameObjectsWithTag("Interceptor"); //update do action for beer pong
-            foreach (var interceptor in interceptorArray)
-            {
-                if (interceptor.GetComponent<InterceptorRotation>().interceptorNumber == playerNumber)
-                {
-                    interceptor.transform.GetChild(1).gameObject.GetComponent<RealtimeView>().RequestOwnership();
-                    interceptor.transform.GetChild(1).gameObject.SetActive(true);
-                    eventToPerform.AddListener(interceptor.GetComponent<InterceptorRotation>().ActivateInterceptor);
-                }
-
-            }
-
-        }
-        else if (miniGamesPlayed == 2)
-        {
-            eventToPerform = null; //update do action for shoot cup
-        }
-        else if (miniGamesPlayed == 3)
-        {
-            eventToPerform = null; //update do action for roullete
-        }
     }
 
     public void ShowScoreboard()
