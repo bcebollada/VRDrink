@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Normal.Realtime;
 using TMPro;
 
 
@@ -26,9 +23,11 @@ public class MobileRigController : MonoBehaviour
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
         miniGamesPlayed = macroGameController.miniGamesPlayed;
     }
-
+    
     private void Start()
     {
+        if (!macroGameController.isMobileRig) return;
+
         if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
         {
             playerNumber = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber;
@@ -39,14 +38,15 @@ public class MobileRigController : MonoBehaviour
         {
             Debug.Log("This mobile rig is the " + playerNumber + "player");
         }
-
+        
         if (miniGamesPlayed == 1) 
         {
-            Transform spawnTransform = GameObject.Find("MobileRigPosition").transform;
+            Transform spawnTransform = GameObject.FindGameObjectWithTag("Respawn").transform;
             transform.parent.position = spawnTransform.position;
             transform.parent.rotation = spawnTransform.rotation;
         }
 
+        
         var interceptorArray = GameObject.FindGameObjectsWithTag("Interceptor"); //update do action for beer pong
         foreach (var interceptor in interceptorArray)
         {
@@ -59,15 +59,7 @@ public class MobileRigController : MonoBehaviour
 
         }
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
+    
     public void Action()
     {
         text.text = "action";

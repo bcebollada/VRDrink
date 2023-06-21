@@ -7,8 +7,11 @@ public class PistolBall_Script : MonoBehaviour
     private Rigidbody rb;
     public float velocity;
 
+    private RunningCupGameController gameController;
+
     private void Awake()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<RunningCupGameController>();
         rb = GetComponent<Rigidbody>();    
     }
 
@@ -26,5 +29,10 @@ public class PistolBall_Script : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GetComponent<AudioSource>().Play();
+
+        if (collision.gameObject.CompareTag("MobileRig"))
+        {
+            collision.gameObject.GetComponent<RunningCupMobileRigController>().Hit();
+        }
     }
 }

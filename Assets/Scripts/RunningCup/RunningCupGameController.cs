@@ -106,7 +106,7 @@ public class RunningCupGameController : MonoBehaviour
             
         points += 1;
 
-        if(macroGameController.pointsManager != null)
+        if(macroGameController.pointsManager != null && !macroGameController.isMobileRig)
         {
             macroGameController.pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
         }
@@ -118,13 +118,13 @@ public class RunningCupGameController : MonoBehaviour
     void TimerComplete()
     {
 
-        if (pointsGoal - points == 0) //vr player won
+        if (pointsGoal - points == 0 && !macroGameController.isMobileRig) //vr player won
         {
             macroGameController.pointsManager.AddPoints(2, 1);
             macroGameController.pointsManager.AddPoints(3, 1);
             macroGameController.pointsManager.AddPoints(4, 1);
         }
-        else if(pointsGoal - points == 5) //vr player lost completly
+        else if(pointsGoal - points == 5 && !macroGameController.isMobileRig) //vr player lost completly
         {
             macroGameController.pointsManager.AddPoints(1, 2);
 
@@ -136,17 +136,30 @@ public class RunningCupGameController : MonoBehaviour
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        foreach(GameObject obstacle in obstacles)
+        /*foreach(GameObject obstacle in obstacles)
         {
             var smokeObstacle = Instantiate(smokeEffect, obstacle.transform.position, Quaternion.identity);
             Destroy(smokeObstacle, 3);
             Destroy(obstacle);
-        }
+        }*/
 
         var smoke = Instantiate(smokeEffect, center, Quaternion.identity);
         Destroy(smoke, 3);
 
-        if(!macroGameController.isMobileRig) Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+        if (!macroGameController.isMobileRig)
+        {
+            Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+        }
+        else //is mobile
+        {
+            GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRig");
+
+            foreach (var mobiles in mobileRigs)
+            {
+                mobiles.GetComponent<RunningCupMobileRigController>().ShowScoreboard();
+                mobiles.transform.position += new Vector3(0, 5, 0);
+            }
+        }
     }
 
     private void SpawnCups()

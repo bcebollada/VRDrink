@@ -401,7 +401,7 @@ Material:
     - _Scroll_EmissiveV: 0
     - _SecondShadeOverridden: 0
     - _SecondShadeVisible: 1
-    - _Set_SystemShadowsToBase: 1
+    - _Set_SystemShadowsToBase: 0
     - _ShadeColor_Step: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
@@ -459,7 +459,7 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UVSec: 0
-    - _Unlit_Intensity: 0
+    - _Unlit_Intensity: 4
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _Use_1stAs2nd: 1
@@ -475,8 +475,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 8
-    - _utsVersionZ: 6
+    - _utsVersionY: 9
+    - _utsVersionZ: 3
     m_Colors:
     - _1st_ShadeColor: {r: 0.5283019, g: 0.37232035, b: 0.116625115, a: 1}
     - _2nd_ShadeColor: {r: 0.3679245, g: 0.19444671, b: 0.077750064, a: 1}

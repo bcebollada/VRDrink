@@ -9,7 +9,7 @@ using Normal.Realtime;
 public class BeerGameController : MonoBehaviour
 {
     //Tables and ball Prefabs
-    [SerializeField] private GameObject staticTable, movingTable, lastTable, currentTable, ballPrefab, ball, startStand, smokeEffect, scoreBoard;
+    [SerializeField] private GameObject staticTable, movingTable, lastTable, currentTable, ballPrefab, ball, startStand, smokeEffect, scoreBoard, pingPongTable;
     [SerializeField] private Transform tableSpawner, ballSpawner;
     [SerializeField] private Transform[] interceptorsMesh = new Transform[3];
 
@@ -41,7 +41,7 @@ public class BeerGameController : MonoBehaviour
         instantiateOptions.ownedByClient = true;
         instantiateOptions.useInstance = realtimeInstance;
 
-        if (!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+        if (!isDebugMode) macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
     }
 
     private void Start()
@@ -83,7 +83,7 @@ public class BeerGameController : MonoBehaviour
             }
         }
 
-        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+        if (!macroGameController.isMobileRig)
             UpdateTablesMainClient(); //if is in the headset, create tables
 
         if (ball == null && timerRunning) SpawnBall();
@@ -97,34 +97,34 @@ public class BeerGameController : MonoBehaviour
         {
             tableLevel = 1;
             Debug.Log("Static destroyed, moving spawned");
-            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, currentTable.transform.rotation, instantiateOptions);
             StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
             Realtime.Destroy(currentTable); //removes first table
-            currentTable = Realtime.Instantiate("TableCupsMoving", tableSpawner.position, Quaternion.identity, instantiateOptions); //creates second table
+            currentTable = Realtime.Instantiate("TableCupsMoving", tableSpawner.position, tableSpawner.transform.rotation, instantiateOptions); //creates second table
         }
         else if (timeLeft < 5 && tableLevel == 1)
         {
             tableLevel = 2;
             Debug.Log("moving destroyed, last spawned");
-            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, currentTable.transform.rotation, instantiateOptions);
             StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
             Realtime.Destroy(currentTable); //removes first table
 
-            currentTable = Realtime.Instantiate("TableCupSpecial", tableSpawner.position, Quaternion.identity, instantiateOptions); //creates third table
+            currentTable = Realtime.Instantiate("TableCupSpecial", tableSpawner.position, tableSpawner.rotation, instantiateOptions); //creates third table
         }
     }
    
 
     void TimerComplete()
     {
-        /*if (playerName == "Player1") macroGameController.playerShots[0] += points;
-        else if (playerName == "Player2") macroGameController.playerShots[1] += points;
-        if (playerName == "Player3") macroGameController.playerShots[2] += points;
-        if (playerName == "Player4") macroGameController.playerShots[3] += points;*/
+        interceptorsMesh[0].gameObject.SetActive(false);
+        interceptorsMesh[1].gameObject.SetActive(false);
+        interceptorsMesh[2].gameObject.SetActive(false);
+        pingPongTable.SetActive(false);
 
-        if(pointsGoal-points <= 0) //vr player won
+        if (pointsGoal-points <= 0) //vr player won
         {
             macroGameController.AddShotsLocalGame(0, 1, 1, 1);
         }
@@ -137,17 +137,14 @@ public class BeerGameController : MonoBehaviour
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) //if is not mobile
+        if (!macroGameController.isMobileRig) //if is not mobile
         {
-            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, currentTable.transform.rotation, instantiateOptions);
             StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
-            Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+            Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, 90f, 0), instantiateOptions);
             //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
             Realtime.Destroy(currentTable); //removes last table
-
-
-
         }
         else //is mobile
         {
@@ -156,6 +153,7 @@ public class BeerGameController : MonoBehaviour
             foreach (var mobiles in mobileRigs)
             {
                 mobiles.GetComponent<MobileRigController>().ShowScoreboard();
+                mobiles.transform.position += new Vector3(0, 5, 0);
             }
         }
 
@@ -181,10 +179,10 @@ public class BeerGameController : MonoBehaviour
 
         Destroy(startStand);
 
-        if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor)
+        if (!macroGameController.isMobileRig)
         {
             SpawnBall();
-            currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, Quaternion.identity, instantiateOptions);
+            currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, tableSpawner.rotation, instantiateOptions);
         }
 
         var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);

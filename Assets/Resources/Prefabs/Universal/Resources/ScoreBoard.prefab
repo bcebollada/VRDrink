@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485380397809297332}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 5988671172517116130}
   - component: {fileID: 381026849936336742}
   - component: {fileID: 5601753998497105206}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DrinkMeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1924786754559192035}
   - component: {fileID: 9201285003879256363}
   - component: {fileID: 5691958656932963250}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 5333534893293083239}
   - component: {fileID: 8244168122856430752}
   - component: {fileID: 4782881425492390925}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6952056655403937782}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2444140653118695283}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,13 +560,13 @@ GameObject:
   - component: {fileID: 1596862068620121536}
   - component: {fileID: 2295095721820556979}
   - component: {fileID: 3591888310122689683}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1596862068620121536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 7356884044615870517}
   - component: {fileID: 8335174735568859998}
   - component: {fileID: 4712186710691728351}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300968602825358956}
   - component: {fileID: 2913237132206219812}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 5518126947558681531}
   - component: {fileID: 2462159823005893180}
   - component: {fileID: 3522614559321883091}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1031,7 @@ GameObject:
   - component: {fileID: 5122727724866857296}
   - component: {fileID: 602614454997074058}
   - component: {fileID: 1539152167028633647}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 7079313812664888251}
   - component: {fileID: 592024602806045190}
   - component: {fileID: 4652837502938774868}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 4937854223249266737}
   - component: {fileID: 8035122678486659204}
   - component: {fileID: 7158460857546081458}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 8036447999669197557}
   - component: {fileID: 2079911330934451916}
   - component: {fileID: 8944878249322567521}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1631,7 +1631,7 @@ GameObject:
   - component: {fileID: 812719093895083447}
   - component: {fileID: 3625464233848704670}
   - component: {fileID: 8694501603019470608}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ScoreBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1721,7 +1721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7657346500768967030}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1762,7 @@ GameObject:
   - component: {fileID: 6514611348440900985}
   - component: {fileID: 5796729964221806589}
   - component: {fileID: 3917897418581096174}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1913,7 +1913,7 @@ GameObject:
   - component: {fileID: 8538634618067928663}
   - component: {fileID: 8538634618067928660}
   - component: {fileID: 8538634618067928657}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2021,7 +2021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8538634618489823130}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartGameStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2057,7 +2057,7 @@ GameObject:
   - component: {fileID: 2020153307173411156}
   - component: {fileID: 872175142518949714}
   - component: {fileID: 1958068335593595534}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 699428203192965625}
   - component: {fileID: 1835243641953904870}
   - component: {fileID: 2384903030417323699}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ScoreBoardCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,9 +2386,33 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7523372300800824462, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3957782524123411102, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3767234935763424202, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
       propertyPath: m_Name
       value: BlackBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102227904637302750, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7555946787141304274, guid: 23864e86e14fa52498eae2d3dd9a669a, type: 3}
       propertyPath: m_LocalScale.x

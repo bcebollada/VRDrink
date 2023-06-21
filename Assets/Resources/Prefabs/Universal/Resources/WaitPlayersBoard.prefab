@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 746684603026479602}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BlackBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3877200066129816244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6867375747365324980}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1742971705151090813}
   - component: {fileID: 3689840385700976840}
   - component: {fileID: 4603094434080075006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4 Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1990901645650870556}
   - component: {fileID: 6118814513252067526}
   - component: {fileID: 5326251458385582179}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 4505932384282149879}
   - component: {fileID: 6089364756701045322}
   - component: {fileID: 2027953300648678680}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7008907569538008950}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 4732506912180932599}
   - component: {fileID: 6125548570235761077}
   - component: {fileID: 5030124515067019434}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   - component: {fileID: 4665598905245757720}
   - component: {fileID: 5813049175603785502}
   - component: {fileID: 5159712300768561858}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3 Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 494836614748785973}
   - component: {fileID: 920019611237523377}
   - component: {fileID: 7703870294687686306}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -989,7 +989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3083238638801745878}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartGameStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 3083238639190404635}
   - component: {fileID: 3083238639190404632}
   - component: {fileID: 3083238639190404637}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 7991271701878318802}
   - component: {fileID: 2602971606560218972}
   - component: {fileID: 2938624377492225724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WaitPlayersBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3959459932550660410}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1288,7 @@ GameObject:
   - component: {fileID: 3688937543356084921}
   - component: {fileID: 4642045265456481920}
   - component: {fileID: 2347528410693402413}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1 Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 1635381145830666795}
   - component: {fileID: 3377599650022159596}
   - component: {fileID: 2222168620554820673}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2706795567213895153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380917731122530234}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1657,7 @@ GameObject:
   - component: {fileID: 7280743193834373579}
   - component: {fileID: 2037905305972460080}
   - component: {fileID: 7429014134459181853}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BlackBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1742,7 +1742,7 @@ GameObject:
   - component: {fileID: 5044234563339518895}
   - component: {fileID: 2523995131554773351}
   - component: {fileID: 1318263844116351998}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2 Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1891,7 @@ GameObject:
   - component: {fileID: 1128863594549088430}
   - component: {fileID: 6484939510649868074}
   - component: {fileID: 1228324173356625274}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DrinkMeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6488250141368471544}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2065,7 +2065,7 @@ GameObject:
   - component: {fileID: 1162734637777667063}
   - component: {fileID: 9123684362892110448}
   - component: {fileID: 7805961368896088479}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,7 +2216,7 @@ GameObject:
   - component: {fileID: 4228432315051163769}
   - component: {fileID: 3394291919203687186}
   - component: {fileID: 2149205612936946579}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5673259872606377504}
   - component: {fileID: 8420441002427812456}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2399,13 +2399,13 @@ GameObject:
   - component: {fileID: 5377225738042539404}
   - component: {fileID: 4859206567512975103}
   - component: {fileID: 7885377049035316447}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5377225738042539404
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2532,7 +2532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9033617493758971711}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
