@@ -32,7 +32,7 @@ public class PistolBall_Script : MonoBehaviour
 
         if (collision.gameObject.CompareTag("MobileRig"))
         {
-            collision.gameObject.GetComponent<RunningCupMobileRigController>().Hit();
+            //collision.gameObject.GetComponent<RunningCupMobileRigController>().Hit();
         }
     }
 }

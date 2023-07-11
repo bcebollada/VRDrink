@@ -122,7 +122,7 @@ public class BeerGameController : MonoBehaviour
         interceptorsMesh[0].gameObject.SetActive(false);
         interceptorsMesh[1].gameObject.SetActive(false);
         interceptorsMesh[2].gameObject.SetActive(false);
-        pingPongTable.SetActive(false);
+        //pingPongTable.SetActive(false);
 
         if (pointsGoal-points <= 0) //vr player won
         {

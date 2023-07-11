@@ -10,7 +10,7 @@ public class CameraDeactivate : MonoBehaviour
     private void Awake()
     {
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
-        if (!macroGameController.isMobileRig) Destroy(this.gameObject);  
+        if (!macroGameController.isMobileRig) this.gameObject.SetActive(false);  
     }
 
 

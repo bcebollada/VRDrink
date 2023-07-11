@@ -53,7 +53,8 @@ public class MobileRigController : MonoBehaviour
             if (interceptor.GetComponent<InterceptorRotation>().interceptorNumber == playerNumber)
             {
                 //interceptor.transform.GetChild(1).gameObject.GetComponent<RealtimeView>().RequestOwnership();
-                //interceptor.transform.GetChild(1).gameObject.SetActive(true);
+                interceptor.transform.GetChild(1).gameObject.SetActive(true);
+                Destroy(interceptor.transform.GetChild(1).gameObject, 3);
                 eventToPerform.AddListener(interceptor.GetComponent<InterceptorRotation>().ActivateInterceptor);
             }
 
@@ -70,6 +71,8 @@ public class MobileRigController : MonoBehaviour
     public void ShowScoreboard()
     {
         scoreBoard.SetActive(true);
+        transform.parent.position += new Vector3(0, 50, 0);
+
     }
 
 

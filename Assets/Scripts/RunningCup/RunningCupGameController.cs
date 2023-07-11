@@ -7,7 +7,7 @@ using Normal.Realtime;
 
 public class RunningCupGameController : MonoBehaviour
 {
-    [SerializeField] private GameObject cup, startStand, smokeEffect, scoreBoard, pistol;
+    [SerializeField] private GameObject cup, startStand, smokeEffect, scoreBoard, pistol, instruction;
     public Vector3 cupSpawnCenter;
     public Vector3 cupSpawnSize;
 
@@ -38,7 +38,7 @@ public class RunningCupGameController : MonoBehaviour
         instantiateOptions.ownedByClient = true;
         instantiateOptions.useInstance = realtimeInstance;
 
-        if (!isDebugMode) macroGameController = GameObject.Find("MacroGameController").GetComponent<MacroGameController>();
+        macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
         center = startStand.transform.position;
     }
 
@@ -80,17 +80,22 @@ public class RunningCupGameController : MonoBehaviour
     public void GameStart()
     {
         //remove instructions
-        GameObject[] instructions = GameObject.FindGameObjectsWithTag("Instructions");
-        foreach (var instruction in instructions)
+        if(instruction != null) instruction.SetActive(false);
+
+        GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRigGameController");
+        Debug.Log("num" + mobileRigs.Length);
+        foreach (var mobiles in mobileRigs)
         {
-            instruction.SetActive(false);
+            var mobileController = mobiles.GetComponent<RunningCupMobileRigController>();
+            mobileController.GameStart();
+            mobileController.instructions.SetActive(false);
         }
 
-        if(!macroGameController.isMobileRig) Realtime.Instantiate("Pistol", startStand.transform.position, Quaternion.identity, instantiateOptions);
+        if (!macroGameController.isMobileRig) Realtime.Instantiate("Pistol", startStand.transform.position, Quaternion.identity, instantiateOptions);
         gameStartCountdown = true;
         var smoke = Instantiate(smokeEffect, startStand.transform.position, Quaternion.identity);
         Destroy(smoke, 3);
-        Destroy(startStand);
+        Destroy(startStand, 0.5f);
         //SpawnCups();
     }
 
@@ -106,13 +111,13 @@ public class RunningCupGameController : MonoBehaviour
             
         points += 1;
 
-        if(macroGameController.pointsManager != null && !macroGameController.isMobileRig)
+        if(macroGameController.pointsManager != null && macroGameController.isMobileRig)
         {
             macroGameController.pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
         }
 
-        if (points == GameObject.FindGameObjectsWithTag("MobileRig").Length) TimerComplete(); //killed all mobile players
-
+        if (points == GameObject.FindGameObjectsWithTag("MobileRigGameController").Length) TimerComplete(); //killed all mobile players
+         
     }
 
     void TimerComplete()
@@ -152,12 +157,11 @@ public class RunningCupGameController : MonoBehaviour
         }
         else //is mobile
         {
-            GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRig");
+            GameObject[] mobileRigs = GameObject.FindGameObjectsWithTag("MobileRigGameController");
 
             foreach (var mobiles in mobileRigs)
             {
                 mobiles.GetComponent<RunningCupMobileRigController>().ShowScoreboard();
-                mobiles.transform.position += new Vector3(0, 5, 0);
             }
         }
     }
@@ -171,5 +175,10 @@ public class RunningCupGameController : MonoBehaviour
             Instantiate(cup, spawnArea, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        AddPoint(other.gameObject.GetComponent<RunningCupMobileRigController>().playerNumber);
     }
 }

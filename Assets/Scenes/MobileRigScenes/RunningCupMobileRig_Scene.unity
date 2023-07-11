@@ -202,6 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127335975}
   - component: {fileID: 127335976}
+  - component: {fileID: 127335977}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -216,14 +217,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127335973}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.28775513, y: -0, z: -0, w: 0.957704}
+  m_LocalPosition: {x: -5.822, y: 8.626, z: -12.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.447, y: 0, z: 0}
 --- !u!114 &127335976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +242,7 @@ MonoBehaviour:
   smokeEffect: {fileID: 419743723205380860, guid: dc05619a87999b648a655b681bec2a91, type: 3}
   scoreBoard: {fileID: 8161855520943818513, guid: 9c1cded2aa073074aafff1d95eab1c01, type: 3}
   pistol: {fileID: 6949992253307223236, guid: 3b9e31a71fb574749af699308f12d85b, type: 3}
+  instruction: {fileID: 832127013}
   cupSpawnCenter: {x: -6.3, y: 2.2, z: -4.12}
   cupSpawnSize: {x: 8.72, y: 0.55, z: 9.19}
   ballNumbers: 15
@@ -268,6 +270,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!65 &127335977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127335973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &168431788
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +324,7 @@ MonoBehaviour:
   waitPlayersBoard: {fileID: 0}
   miniGamesPlayed: 2
   isMainMacroController: 0
-  isMobileRig: 0
+  isMobileRig: 1
   pointsManager: {fileID: 0}
   miniGamesPlayedCommunicator: {fileID: 0}
 --- !u!4 &168431790
@@ -835,13 +850,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b75c9c46c377949b1e6d20d01828f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   joystick: {fileID: 1274335651}
   moveSpeed: 20
   jumpForce: 900
   rotSpeed: 2
   cup: {fileID: 0}
   scoreBoard: {fileID: 0}
+  instructions: {fileID: 0}
+  cam: {fileID: 0}
+  playerNumber: 0
+  initialPoint: 0
+  macroGameController: {fileID: 0}
   isOnGround: 0
+  debug1: {fileID: 0}
+  debug2: {fileID: 0}
+  debug3: {fileID: 0}
 --- !u!54 &710674615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1013,6 +1037,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826811417}
   m_CullTransparentMesh: 1
+--- !u!1 &832127013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832127014}
+  m_Layer: 0
+  m_Name: Instructions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &832127014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832127013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.4292374, y: 0.6742842, z: -3.9058576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &839489207
 PrefabInstance:
   m_ObjectHideFlags: 0

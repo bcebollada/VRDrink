@@ -32,6 +32,9 @@ public class MacroGameController : MonoBehaviour
 
     public MiniGamesPlayedCommunicator miniGamesPlayedCommunicator;
 
+    public bool setMobileNumber;
+
+
 
     private void Awake()
     {
@@ -179,6 +182,8 @@ public class MacroGameController : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "MainMenu_Scene" || SceneManager.GetActiveScene().name == "MainMenuMobileRig_Scene")
         {
+            Debug.Log("changing to beer pong");
+
             if (miniGamesPlayedCommunicator == null) StartCoroutine(ChangeScene());
             else miniGamesPlayedCommunicator.SetMiniGamesPlayed(1);
 
@@ -186,12 +191,15 @@ public class MacroGameController : MonoBehaviour
 
         else if (SceneManager.GetActiveScene().name == "BeerPong_Scene" || SceneManager.GetActiveScene().name == "BeerPong_MobileRigScene")
         {
+            Debug.Log("changing to running cup");
             if (miniGamesPlayedCommunicator == null) StartCoroutine(ChangeScene());
             else miniGamesPlayedCommunicator.SetMiniGamesPlayed(2);
         }
 
         else if (SceneManager.GetActiveScene().name == "RunningCup_Scene" || SceneManager.GetActiveScene().name == "RunningCupMobileRig_Scene")
         {
+            Debug.Log("changing to roullete");
+
             if (playerNumbers == 1 && playerPlaying != "Player2")
             {
                 SceneManager.LoadScene("BeerPong_Scene");
@@ -319,6 +327,11 @@ public class MacroGameController : MonoBehaviour
     {
         Debug.Log("OnDisable");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void Point()
+    {
+        pointsManager.AddPoints(2, 1);
     }
 }
 

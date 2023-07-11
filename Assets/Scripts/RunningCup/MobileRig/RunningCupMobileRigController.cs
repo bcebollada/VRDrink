@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Normal.Realtime;
+using TMPro;
 
 public class RunningCupMobileRigController : MonoBehaviour
 {
-    private Rigidbody rb;
+    public Rigidbody rb;
     public FixedJoystick joystick;
 
     public float moveSpeed, jumpForce, rotSpeed;
     private Transform deadTransform;
 
-    public GameObject cup, scoreBoard;
+    public GameObject cup, scoreBoard, instructions;
+    public Camera cam;
 
     private RunningCupGameController gameController;
 
-    private int playerNumber;
-    private int initialPoint; //to check if was hit;
+    public int playerNumber, initialPoint;
 
-    private MacroGameController macroGameController;
+    public MacroGameController macroGameController;
 
     public bool isOnGround;
 
@@ -27,12 +28,15 @@ public class RunningCupMobileRigController : MonoBehaviour
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
 
+    public TMP_Text debug1, debug2, debug3;
+
+    private PointsManager pointsManager;
+
+
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-
         realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
         instantiateOptions.ownedByClient = true;
@@ -41,11 +45,17 @@ public class RunningCupMobileRigController : MonoBehaviour
         deadTransform = GameObject.FindGameObjectWithTag("Finish").transform;
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
 
+
+        if (GameObject.FindGameObjectWithTag("PlayerPoints") != null)
+        {
+            pointsManager = GameObject.FindGameObjectWithTag("PlayerPoints").GetComponent<PointsManager>();
+        }
+
         if (GameObject.FindGameObjectWithTag("PlayerNumber") != null)
         {
             playerNumber = GameObject.FindGameObjectWithTag("PlayerNumber").GetComponent<MobileRigPlayerNumber>().playerNumber;
         }
-        else playerNumber = 1;
+        else playerNumber = 2;
     }
 
     private void Start()
@@ -58,23 +68,75 @@ public class RunningCupMobileRigController : MonoBehaviour
         //put movbile rig in random position on scene
         transform.position = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
 
+        if(playerNumber == 2) initialPoint = pointsManager.player2Points;
+        else if (playerNumber == 3) initialPoint = pointsManager.player3Points;
+        else if (playerNumber == 4) initialPoint = pointsManager.player4Points;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rb.isKinematic && !wasHit) //turned kinnematic because was hit
+
+        debug2.text = macroGameController.pointsManager.player2Points.ToString();
+        debug3.text = playerNumber.ToString();
+        /*if(playerNumber == 2)
         {
-            print("hit");
+            if(macroGameController.pointsManager.player2Points != initialPoint)
+            {
+                rb.isKinematic = true;
 
-            gameController.AddPoint(playerNumber);
-            if (playerNumber == 1) macroGameController.AddShotsLocalGame(0, 1, 0, 0);
-            else if (playerNumber == 2) macroGameController.AddShotsLocalGame(0, 0, 1, 0);
-            else if (playerNumber == 3) macroGameController.AddShotsLocalGame(0, 0, 0, 1);
+                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
+                StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
-            wasHit = true;
+                transform.position = deadTransform.position;
+                transform.rotation = deadTransform.rotation;
+
+                gameController.AddPoint(playerNumber);
+
+                cup.SetActive(false);
+
+                initialPoint = macroGameController.pointsManager.player2Points;
+            }
         }
-        else Debug.Log("no hit");
+        else if (playerNumber == 3)
+        {
+            if (macroGameController.pointsManager.player3Points != initialPoint)
+            {
+                rb.isKinematic = true;
+
+                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
+                StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
+                transform.position = deadTransform.position;
+                transform.rotation = deadTransform.rotation;
+
+                gameController.AddPoint(playerNumber);
+
+                cup.SetActive(false);
+
+                initialPoint = macroGameController.pointsManager.player3Points;
+            }
+        }
+        else if (playerNumber == 4)
+        {
+            if (macroGameController.pointsManager.player4Points != initialPoint)
+            {
+                rb.isKinematic = true;
+
+                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
+                StartCoroutine(DestroyRealtimeObject(smoke, 3));
+
+                transform.position = deadTransform.position;
+                transform.rotation = deadTransform.rotation;
+
+                gameController.AddPoint(playerNumber);
+
+                cup.SetActive(false);
+
+                initialPoint = macroGameController.pointsManager.player2Points;
+            }
+        }*/
     }
 
     private void FixedUpdate()
@@ -101,10 +163,10 @@ public class RunningCupMobileRigController : MonoBehaviour
 
     public void Hit() //need to run this when ball hits the cup
     {
-        rb.isKinematic = true;
+        debug1.text = "hit1";
 
-        var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
-        StartCoroutine(DestroyRealtimeObject(smoke, 3));
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        debug1.text = "hit2";
 
         transform.position = deadTransform.position;
         transform.rotation = deadTransform.rotation;
@@ -112,6 +174,10 @@ public class RunningCupMobileRigController : MonoBehaviour
         //gameController.AddPoint(playerNumber);
 
         cup.SetActive(false);
+        debug1.text = "hit3";
+
+        ShowScoreboard();
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -121,7 +187,11 @@ public class RunningCupMobileRigController : MonoBehaviour
         {
             Debug.Log("Cup hitted by ball");
 
-            //Hit();
+            if (macroGameController.isMobileRig)
+            {
+                Hit();
+
+            }
         }
 
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle"))
@@ -140,5 +210,18 @@ public class RunningCupMobileRigController : MonoBehaviour
     public void ShowScoreboard()
     {
         scoreBoard.SetActive(true);
+        cam.cullingMask = ~cam.cullingMask;
+        cam.cullingMask = (1 << 5); // Set the culling mask to block everything except the target layer
+
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+
+        transform.position = deadTransform.position;
+        transform.rotation = deadTransform.rotation;
+    }
+
+    public void GameStart()
+    {
+        instructions.SetActive(false);
+        cam.cullingMask = int.MaxValue; //show everything
     }
 }

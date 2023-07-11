@@ -21,7 +21,7 @@ public class Pistol_Script : MonoBehaviour
 
         realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
-        instantiateOptions.ownedByClient = true;
+        //instantiateOptions.ownedByClient = true;
         instantiateOptions.useInstance = realtimeInstance;
     }
     // Update is called once per frame

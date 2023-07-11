@@ -573,6 +573,7 @@ MonoBehaviour:
   isMobileRig: 1
   pointsManager: {fileID: 0}
   miniGamesPlayedCommunicator: {fileID: 1377570737}
+  setMobileNumber: 0
 --- !u!4 &377020109
 Transform:
   m_ObjectHideFlags: 0
@@ -1497,31 +1498,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999992
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0011528292
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000050103376
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.0005808448
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.132
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -0.006
       objectReference: {fileID: 0}
     - target: {fileID: 940314908692880689, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856388469651957419, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3126210608952287326, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3235905057425865318, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1535,6 +1544,22 @@ PrefabInstance:
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4369356257821181822, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369356257821181822, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369356257821181822, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3dfd2714b78dae409af1ec69c7d94f1, type: 2}
+    - target: {fileID: 4369356258396717321, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3dfd2714b78dae409af1ec69c7d94f1, type: 2}
     - target: {fileID: 4424233981182444889, guid: adebec0dcb8147c4185a0f795d4e3816, type: 3}
       propertyPath: m_Name
       value: Ambient

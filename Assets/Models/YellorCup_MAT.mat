@@ -384,7 +384,7 @@ Material:
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _IsBaseMapAlphaAsClippingMask: 0
-    - _Is_BLD: 0
+    - _Is_BLD: 1
     - _Is_BakedNormal: 0
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
@@ -431,8 +431,8 @@ Material:
     - _ObjectSpaceUVMapping: 0
     - _OcclusionStrength: 1
     - _Offset: 0
-    - _Offset_X_Axis_BLD: -0.05
-    - _Offset_Y_Axis_BLD: 0.09
+    - _Offset_X_Axis_BLD: 1
+    - _Offset_Y_Axis_BLD: -1
     - _Offset_Z: 0
     - _OtlWidth: 0.09
     - _OutlineOverridden: 0
@@ -535,7 +535,7 @@ Material:
     - _UVDetail: 0
     - _UVEmissive: 0
     - _UVSec: 0
-    - _Unlit_Intensity: 0
+    - _Unlit_Intensity: 4
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _Use_1stAs2nd: 0
@@ -552,8 +552,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 8
-    - _utsVersionZ: 6
+    - _utsVersionY: 9
+    - _utsVersionZ: 3
     m_Colors:
     - _1st_ShadeColor: {r: 0.7169812, g: 0.581444, b: 0.016233515, a: 1}
     - _2nd_ShadeColor: {r: 0.5754717, g: 0.42114535, b: 0, a: 1}
