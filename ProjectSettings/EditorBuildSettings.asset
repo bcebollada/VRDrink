@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MobileRigScenes/MainMenuMobileRig_Scene.unity
-    guid: f15ae338287130f488dc4fb37347526b
-  - enabled: 1
     path: Assets/Scenes/MainMenu_Scene.unity
     guid: e0d1b8d6a4638b449ad06177d711831b
+  - enabled: 1
+    path: Assets/Scenes/MobileRigScenes/MainMenuMobileRig_Scene.unity
+    guid: f15ae338287130f488dc4fb37347526b
   - enabled: 1
     path: Assets/Scenes/MobileRigScenes/RunningCupMobileRig_Scene.unity
     guid: cf69e942bf3cd0e448cd3a2affbf0bef
@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MobileRigScenes/BeerPong_MobileRigScene.unity
     guid: 28e24b3f9010f054bbef099d8dc45348
   - enabled: 0
-    path: Assets/Scenes/VRTest.unity
-    guid: 56e06472b4e64bd4f8eb0a77cbe21ee5
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Furniture_ges1/scene.unity
     guid: 634c41117f48a1940933d58845b6f252

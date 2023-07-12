@@ -9,7 +9,7 @@ using Normal.Realtime;
 public class BeerGameController : MonoBehaviour
 {
     //Tables and ball Prefabs
-    [SerializeField] private GameObject staticTable, movingTable, lastTable, currentTable, ballPrefab, ball, startStand, smokeEffect, scoreBoard, pingPongTable;
+    [SerializeField] private GameObject staticTable, movingTable, lastTable, currentTable, ballPrefab, ball, startStand, smokeEffect, scoreBoard, pingPongTable, grabVisualCue;
     [SerializeField] private Transform tableSpawner, ballSpawner;
     [SerializeField] private Transform[] interceptorsMesh = new Transform[3];
 
@@ -185,8 +185,12 @@ public class BeerGameController : MonoBehaviour
             currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, tableSpawner.rotation, instantiateOptions);
         }
 
+        Instantiate(grabVisualCue, ballSpawner.position, Quaternion.identity);
+        Debug.Log("visual instantiated");
+
         var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
         StartCoroutine(DestroyRealtimeObject(smoke2, 3));
+
 
     }
 

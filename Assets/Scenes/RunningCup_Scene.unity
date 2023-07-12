@@ -4975,7 +4975,7 @@ PrefabInstance:
     - target: {fileID: 322754496239818837, guid: b92df1423cac43545913fee931baaa82, type: 3}
       propertyPath: AutoSpawnPrefab
       value: 
-      objectReference: {fileID: 5759193083480693542, guid: 681e959ed3044df4da276d03dfb60e74, type: 3}
+      objectReference: {fileID: 5759193083480693542, guid: edbb8012e91816f428c5d5cbdd0fa7e3, type: 3}
     - target: {fileID: 322754496239818856, guid: b92df1423cac43545913fee931baaa82, type: 3}
       propertyPath: m_RootOrder
       value: 1

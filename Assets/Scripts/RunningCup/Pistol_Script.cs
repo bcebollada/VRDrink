@@ -53,7 +53,7 @@ public class Pistol_Script : MonoBehaviour
         if(other.gameObject.CompareTag("Ball"))
         {
             bullets += 1;
-            Realtime.Destroy(other.gameObject);
+            Destroy(other.gameObject);
 
             for (int i = 0; i < bullets; i++)
             {

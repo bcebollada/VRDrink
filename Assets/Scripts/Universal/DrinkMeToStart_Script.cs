@@ -28,7 +28,7 @@ public class DrinkMeToStart_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(cup.transform.position.x, cup.transform.position.y + textOffset, cup.transform.position.z);
+        //transform.position = new Vector3(cup.transform.position.x, cup.transform.position.y + textOffset, cup.transform.position.z);
         transform.LookAt(camera.transform);
     }
 

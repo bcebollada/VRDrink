@@ -96,7 +96,7 @@ MonoBehaviour:
   ShowGrabIndicator: 1
   ShowTriggerGrabIndicator: 1
   ShowForceGrabIndicator: 1
-  ForceGrabbable: 1
+  ForceGrabbable: 0
   ForcePullOverride: {fileID: 0}
   JointOverride: {fileID: 0}
   OneHandStrength: {fileID: 0}
@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47270b143808046499ca5fb76796f659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requestToMobile: 0
 --- !u!1 &781971015470564581
 GameObject:
   m_ObjectHideFlags: 0
