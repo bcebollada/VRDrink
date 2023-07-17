@@ -187,9 +187,11 @@ public class RunningCupMobileRigController : MonoBehaviour
         {
             Debug.Log("Cup hitted by ball");
 
+            Hit();
+
             if (macroGameController.isMobileRig)
             {
-                Hit();
+                //Hit();
 
             }
         }

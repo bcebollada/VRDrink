@@ -28,9 +28,12 @@ public class BeerGameController : MonoBehaviour
     [SerializeField] private MacroGameController macroGameController;
 
     public bool isDebugMode;
+    private bool gameStarted;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
+
+    public GameStartCommunicator gameStartCommunicator;
 
 
 
@@ -60,6 +63,15 @@ public class BeerGameController : MonoBehaviour
 
     void Update()
     {
+        if(!gameStarted)
+        {
+            if (gameStartCommunicator.gameStarted)
+            {
+                gameStarted = true;
+                StartGame();
+            }
+        }
+
         if (gameStartCountdown)
         {
             countDown -= Time.deltaTime; //reduce start countdown in seconds
@@ -142,7 +154,7 @@ public class BeerGameController : MonoBehaviour
             var smoke = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, currentTable.transform.rotation, instantiateOptions);
             StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
-            Realtime.Instantiate("ScoreBoard", currentTable.transform.position, Quaternion.Euler(0, 90f, 0), instantiateOptions);
+            Realtime.Instantiate("ScoreBoard", startStand.transform.position, Quaternion.Euler(0, 90f, 0), instantiateOptions);
             //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
             Realtime.Destroy(currentTable); //removes last table
         }
@@ -156,8 +168,6 @@ public class BeerGameController : MonoBehaviour
                 mobiles.transform.position += new Vector3(0, 5, 0);
             }
         }
-
-
     }
 
     // Call this function to start the timer
@@ -177,21 +187,25 @@ public class BeerGameController : MonoBehaviour
         var smoke = Realtime.Instantiate("Thick Smoke Variant", startStand.transform.position, Quaternion.identity, instantiateOptions);
         StartCoroutine(DestroyRealtimeObject(smoke, 3));
 
-        Destroy(startStand);
+        startStand.SetActive(false);
+        //Destroy(startStand);
 
         if (!macroGameController.isMobileRig)
         {
             SpawnBall();
+
             currentTable = Realtime.Instantiate("TableCupsStatic", tableSpawner.position, tableSpawner.rotation, instantiateOptions);
+            Instantiate(grabVisualCue, ballSpawner.position, Quaternion.identity);
+
+            var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
+            StartCoroutine(DestroyRealtimeObject(smoke2, 3));
         }
+    }
 
-        Instantiate(grabVisualCue, ballSpawner.position, Quaternion.identity);
-        Debug.Log("visual instantiated");
-
-        var smoke2 = Realtime.Instantiate("Thick Smoke Variant", currentTable.transform.position, Quaternion.identity, instantiateOptions);
-        StartCoroutine(DestroyRealtimeObject(smoke2, 3));
-
-
+    public void StartGameCupTurn()
+    {
+        Debug.Log("game start");
+        gameStartCommunicator.SetBool(true);
     }
 
     public void SetInterceptors()

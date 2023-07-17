@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class MobileRigController : MonoBehaviour
@@ -10,6 +11,8 @@ public class MobileRigController : MonoBehaviour
 
     private MacroGameController macroGameController;
 
+    private BeerGameController beerGameController;
+
     public TMP_Text text, debugText;
 
     public GameObject scoreBoard;
@@ -18,9 +21,13 @@ public class MobileRigController : MonoBehaviour
 
     public int playerNumber;
 
+    public Slider slider;
+    private float initialTimer;
+
     private void Awake()
     {
         macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
+        beerGameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BeerGameController>();
         miniGamesPlayed = macroGameController.miniGamesPlayed;
     }
     
@@ -59,11 +66,22 @@ public class MobileRigController : MonoBehaviour
             }
 
         }
+
+        initialTimer = beerGameController.timeLeft;
+        slider.maxValue = initialTimer;
     }
-    
+
+    private void Update()
+    {
+        if (beerGameController.gameStartCountdown || beerGameController.timerRunning) debugText.text = "started";
+        else debugText.text = "no";
+
+        slider.value = initialTimer - beerGameController.timeLeft;
+    }
+
     public void Action()
     {
-        text.text = "action";
+        //text.text = "action";
         eventToPerform.Invoke();
 
     }
