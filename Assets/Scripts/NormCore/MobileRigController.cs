@@ -83,14 +83,12 @@ public class MobileRigController : MonoBehaviour
     {
         //text.text = "action";
         eventToPerform.Invoke();
-
     }
 
     public void ShowScoreboard()
     {
         scoreBoard.SetActive(true);
         transform.parent.position += new Vector3(0, 50, 0);
-
     }
 
 
