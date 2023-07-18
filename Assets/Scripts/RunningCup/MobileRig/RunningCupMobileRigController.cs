@@ -78,8 +78,9 @@ public class RunningCupMobileRigController : MonoBehaviour
     void Update()
     {
 
-        debug2.text = macroGameController.pointsManager.player2Points.ToString();
-        debug3.text = playerNumber.ToString();
+        //debug2.text = macroGameController.pointsManager.player2Points.ToString();
+        //debug3.text = playerNumber.ToString();
+
         /*if(playerNumber == 2)
         {
             if(macroGameController.pointsManager.player2Points != initialPoint)

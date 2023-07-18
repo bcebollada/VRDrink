@@ -15,7 +15,7 @@ public class MacroGameController : MonoBehaviour
     public int[] playerLocalShots = new int[4]; //array used to controll players points in scpecific mini game
     public int[] playerOverallShots = new int[4]; //array used to controll players points in macrogame
 
-    public GameObject playerSelectStartStand,smokeEffect,playerCamera, waitPlayersBoard;
+    public GameObject smokeEffect,playerCamera, waitPlayersBoard;
 
     private GameObject playerNumStand;
 
@@ -34,6 +34,15 @@ public class MacroGameController : MonoBehaviour
 
     public bool setMobileNumber;
 
+    public MainMenu mainMenuScene;
+
+
+    [System.Serializable]
+    public class MainMenu
+    {
+        public TMP_Text title, startText, selectText;
+        public GameObject playerSelectStartStand, initalGameBoard;
+    }
 
 
     private void Awake()
@@ -90,11 +99,17 @@ public class MacroGameController : MonoBehaviour
 
     public void PlayersSelect()
     {
-        var spawnPosition = playerSelectStartStand.transform.position;
-        Destroy(playerSelectStartStand);
+        var spawnPosition = mainMenuScene.playerSelectStartStand.transform.position;
+        Destroy(mainMenuScene.playerSelectStartStand);
         //var smoke = Instantiate(smokeEffect, spawnPosition, Quaternion.identity);
         //Destroy(smoke, 3);
-        if(!isMobileRig) playerNumStand = Realtime.Instantiate("Players Number Stands", spawnPosition, Quaternion.identity, instantiateOptions);
+        if (!isMobileRig)
+        {
+            mainMenuScene.title.gameObject.SetActive(false);
+            mainMenuScene.startText.gameObject.SetActive(false);
+            mainMenuScene.selectText.gameObject.SetActive(true);
+            playerNumStand = Realtime.Instantiate("Players Number Stands", spawnPosition, Quaternion.identity, instantiateOptions);
+        }
     }
 
     public void PlayersNum2()
@@ -172,6 +187,7 @@ public class MacroGameController : MonoBehaviour
     public void PlayerConnecWait() //waits for all player to connect in order to continue
     {
         if (isMobileRig) return; //just vr needs to instantiate
+        Destroy(mainMenuScene.initalGameBoard);
         Realtime.Instantiate("WaitPlayersBoard", playerNumStand.transform.position, playerNumStand.transform.rotation, instantiateOptions);
         Realtime.Destroy(playerNumStand);
     }
