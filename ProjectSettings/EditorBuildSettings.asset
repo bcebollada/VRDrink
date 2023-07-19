@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/CutTheCup_Scene.unity
+    guid: dcd0f3ac151ec9444b7f65470c94bc70
+  - enabled: 1
     path: Assets/Scenes/MobileRigScenes/CutTheCupMobile_Scene.unity
     guid: 5fa5f51f09be1d84f8e3dc5ddde7aa94
   - enabled: 1

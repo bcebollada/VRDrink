@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
 
 public class Bomb_Script : MonoBehaviour
 {
     public GameObject explosionEffect;
 
-    // Start is called before the first frame update
-    void Start()
+    private CutCupGameController gameController;
+
+    private void Awake()
     {
-        
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<CutCupGameController>();
     }
 
     // Update is called once per frame
@@ -20,6 +22,16 @@ public class Bomb_Script : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(explosionEffect, transform);
+        Realtime.InstantiateOptions instantiateOp = new Realtime.InstantiateOptions();
+        instantiateOp.ownedByClient = true;
+        Realtime.Instantiate("Fire Impact", transform.position, transform.rotation, instantiateOp);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

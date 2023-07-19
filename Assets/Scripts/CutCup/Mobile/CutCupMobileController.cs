@@ -14,6 +14,16 @@ public class CutCupMobileController : MonoBehaviour
 
     public GameObject scoreBoard;
 
+    private int maxAmmo;
+    private int currentAmmo;
+
+    public float ammoRechargeTime;
+    private float rechargeTime;
+    public TMP_Text ammoText;
+
+    public Slider slider;
+    private float initialTimer;
+
 
     private void Awake()
     {
@@ -27,22 +37,64 @@ public class CutCupMobileController : MonoBehaviour
         Debug.Log(gameController);
         eventBomb.AddListener(gameController.SpawnBomb);
         eventCup.AddListener(gameController.SpawnCup);
+
+        Transform spawnTransform = GameObject.FindGameObjectWithTag("Respawn").transform;
+        transform.position = spawnTransform.position;
+        transform.rotation = spawnTransform.rotation;
+
+        maxAmmo = 4 - macroGameController.playerNumbers; //set the max ammo the mobile player has based on the num of players
+        currentAmmo = maxAmmo;
+        ammoText.text = currentAmmo.ToString();
+
+        initialTimer = gameController.timeLeft;
+        slider.maxValue = initialTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //calculates time to recharge ammo
+        rechargeTime += Time.deltaTime;
+        if(rechargeTime >= ammoRechargeTime)
+        {
+            rechargeTime = 0;
+
+            //if ammo is not maxed, add
+            if (currentAmmo < maxAmmo)
+            {
+                currentAmmo += 1;
+                ammoText.text = currentAmmo.ToString();
+            }
+            
+        }
+
+        slider.value = initialTimer - gameController.timeLeft; //update time slider
+
     }
 
     public void SpawnCup()
     {
-        eventCup.Invoke();
+        //if doesnt has ammo, return;
+        if (currentAmmo > 0)
+        {
+            currentAmmo -= 1;
+            ammoText.text = currentAmmo.ToString();
+
+            eventCup.Invoke();
+        }
     }
 
     public void SpawnBomb()
     {
-        eventBomb.Invoke();
+        //if doesnt has ammo, return;
+        if (currentAmmo > 0) 
+        {
+            Debug.Log(currentAmmo);
+            currentAmmo -= 1;
+            ammoText.text = currentAmmo.ToString();
+
+            eventBomb.Invoke();
+        } 
     }
 
     public void ShowScoreboard()

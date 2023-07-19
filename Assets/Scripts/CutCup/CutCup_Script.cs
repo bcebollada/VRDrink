@@ -19,9 +19,11 @@ public class CutCup_Script : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("cup collided with" + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Ground"))
         {
             gameController.GameOver();
+            Destroy(this.gameObject);
         }
     }
 }

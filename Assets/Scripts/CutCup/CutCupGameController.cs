@@ -7,9 +7,6 @@ using TMPro;
 
 public class CutCupGameController : MonoBehaviour
 {
-    public int points;
-    public int pointsGoal; //player will need to this amout of points
-
     public TMP_Text pointText, timerText, startCountDownText;
 
     public float timeLeft = 30.0f;  // Set the timer duration in seconds
@@ -30,17 +27,15 @@ public class CutCupGameController : MonoBehaviour
     public Vector3 spawnSize;
     public Vector3 spawnCenter;
 
+    public Transform laucherTransform;
+    public float launchTimeDuration;
+
     private void Awake()
     {
         realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
         //instantiateOptions.ownedByClient = true;
         instantiateOptions.useInstance = realtimeInstance;
-
-        //set position
-        Transform spawnTransform = GameObject.FindGameObjectWithTag("Respawn").transform;
-        transform.parent.position = spawnTransform.position;
-        transform.parent.rotation = spawnTransform.rotation;
     }
 
     private void Update()
@@ -51,6 +46,17 @@ public class CutCupGameController : MonoBehaviour
             {
                 gameStarted = true;
                 StartGame();
+            }
+        }
+
+        if (gameStartCountdown)
+        {
+            countDown -= Time.deltaTime; //reduce start countdown in seconds
+            startCountDownText.text = Mathf.Round(countDown).ToString();
+            if (countDown <= 0)
+            {
+                timerRunning = true;
+                startCountDownText.text = "";
             }
         }
 
@@ -146,12 +152,46 @@ public class CutCupGameController : MonoBehaviour
 
     public void SpawnBomb()
     {
-        SpawnObj("Bomb");
+        //SpawnObj("Bomb");
+        LaunchObj("Bomb");
     }
 
     public void SpawnCup()
     {
-        SpawnObj("CutCup");
+        //SpawnObj("CutCup");
+        LaunchObj("CutCup");
+    }
+
+    public void LaunchObj(string objToSpawn)
+    {
+        var targetArea = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
+
+        var Vo = CalculateVelocity(targetArea, laucherTransform.position, launchTimeDuration);
+
+        //GameObject obj = Instantiate(bola, gameObject.transform.position, Quaternion.identity);
+        GameObject obj = Realtime.Instantiate(objToSpawn, laucherTransform.position, rotation: Quaternion.identity, instantiateOptions);
+
+        obj.GetComponent<Rigidbody>().velocity = Vo;
+    }
+
+    Vector3 CalculateVelocity(Vector3 target, Vector3 origin, float time)
+    {
+        //define the distance x and y first
+        Vector3 distance = target - origin;
+        Vector3 distanceXZ = distance;
+        distanceXZ.y = 0f;
+
+        //create a float the represent our distance
+        float Sy = distance.y;
+        float Sxz = distanceXZ.magnitude;
+
+        float Vxz = Sxz / time;
+        float Vy = Sy / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time;
+
+        Vector3 result = distanceXZ.normalized;
+        result *= Vxz;
+        result.y = Vy;
+        return result;
     }
 
     public void SpawnObj(string objName)

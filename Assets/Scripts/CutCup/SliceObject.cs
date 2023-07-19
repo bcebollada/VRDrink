@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EzySlice;
 using UnityEngine.InputSystem;
+using Normal.Realtime;
 
 public class SliceObject : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class SliceObject : MonoBehaviour
         bool hasHit = Physics.Linecast(startSlicePoint.position, endtSlicePoint.position, out RaycastHit hit, SliceableLayer);
         if (hasHit)
         {
-            Debug.Log("sliced");
+            Debug.Log("sliced" + hit.collider.gameObject.name);
             GameObject target = hit.transform.gameObject;
             SliceObj(target);
         }
@@ -67,7 +68,7 @@ public class SliceObject : MonoBehaviour
             SetupSlicedComponent(lowerHull);
 
 
-            Destroy(target);
+            Realtime.Destroy(target);
         }
     }
 
