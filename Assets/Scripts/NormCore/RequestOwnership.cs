@@ -9,10 +9,12 @@ public class RequestOwnership : MonoBehaviour
 
     public bool requestToMobile;
 
+    private MacroGameController macroGameController;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
     }
 
     // Update is called once per frame
@@ -20,13 +22,13 @@ public class RequestOwnership : MonoBehaviour
     {
         if (GetComponent<RealtimeView>().room.connected && !hasRequested && !requestToMobile)
         {
-            if (SystemInfo.deviceModel.Contains("Quest") || SystemInfo.deviceModel.Contains("Raider") || Application.platform == RuntimePlatform.WindowsEditor) 
+            if (!macroGameController.isMobileRig) 
                 StartCoroutine("RequestOwenerShip"); //runs just on quest or  PC
         }
 
         else if (GetComponent<RealtimeView>().room.connected && !hasRequested && requestToMobile) //request for mobile
         {
-            if (!SystemInfo.deviceModel.Contains("Quest") && !SystemInfo.deviceModel.Contains("Raider") && Application.platform != RuntimePlatform.WindowsEditor)
+            if (macroGameController.isMobileRig)
                 StartCoroutine("RequestOwenerShip"); //runs just on mobile
         }
     }

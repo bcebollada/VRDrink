@@ -13,7 +13,7 @@ public class PointsManager : MonoBehaviour
 
     public int player1Points, player2Points, player3Points, player4Points;
 
-
+    public bool isMain;
 
     private void Awake()
     {
@@ -25,6 +25,11 @@ public class PointsManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (GameObject.FindGameObjectsWithTag("PlayerPoints").Length > 1)
+        {
+            if (!isMain) Destroy(this.gameObject);
+        }
     }
 
 

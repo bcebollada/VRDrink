@@ -59,7 +59,6 @@ GameObject:
   - component: {fileID: 4043424170053406407}
   - component: {fileID: 4043424170053406406}
   - component: {fileID: 4043424170053406405}
-  - component: {fileID: 4043424170053406402}
   - component: {fileID: 4010302561472090653}
   - component: {fileID: 1796019710528390318}
   - component: {fileID: 3804803048045533663}
@@ -263,33 +262,6 @@ MonoBehaviour:
   cuttedMaterial: {fileID: 2100000, guid: 67878fd8c0aa3d147905612d887bf8aa, type: 2}
   velocityEstimator: {fileID: 4043424169907212593}
   cutForce: 600
---- !u!114 &4043424170053406402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4043424170053406265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e548cafc4be4017468f0611512dcd811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4043424170053406405}
-        m_TargetAssemblyTypeName: SliceObject, Assembly-CSharp
-        m_MethodName: DebugSlice
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4010302561472090653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +302,7 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _syncVelocity: 1
-  _maintainOwnershipWhileSleeping: 0
+  _maintainOwnershipWhileSleeping: 1
 --- !u!114 &3804803048045533663
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
 
 public class PistolBall_Script : MonoBehaviour
 {
@@ -30,9 +31,15 @@ public class PistolBall_Script : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
 
-        if (collision.gameObject.CompareTag("MobileRig"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            //collision.gameObject.GetComponent<RunningCupMobileRigController>().Hit();
+            StartCoroutine(DestroyRealtimeObject(this.gameObject, 2f));
         }
+    }
+
+    private IEnumerator DestroyRealtimeObject(GameObject objectToDestroy, float secondsToDestroy)
+    {
+        yield return new WaitForSeconds(secondsToDestroy);
+        Realtime.Destroy(objectToDestroy);
     }
 }

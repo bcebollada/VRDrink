@@ -33,6 +33,7 @@ public class CupPoint : MonoBehaviour
             gameController.AddPoint(pointsWorth);
             //Destroy(other.gameObject, 3);
             //gameController.SpawnBall();
+            gameController.PlaySound(BeerGameController.soundNames.niceShot);
         }
     }
 }

@@ -35,6 +35,11 @@ public class BeerGameController : MonoBehaviour
 
     public GameStartCommunicator gameStartCommunicator;
 
+    public AudioSource audioSource;
+
+    public enum soundNames {blocked, miss, niceShot}
+    public AudioClip[] soundEffects;
+
 
 
     private void Awake()
@@ -45,6 +50,15 @@ public class BeerGameController : MonoBehaviour
         instantiateOptions.useInstance = realtimeInstance;
 
         if (!isDebugMode) macroGameController = GameObject.FindGameObjectWithTag("MacroGameController").GetComponent<MacroGameController>();
+
+        if(audioSource == null)
+        {
+            if (GetComponent<AudioSource>() != null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
+            else Debug.LogWarning("No audio source on game controller");
+        }
     }
 
     private void Start()
@@ -251,9 +265,6 @@ public class BeerGameController : MonoBehaviour
         }
     }
 
-    public void MiniGameEnd()
-    {
-    }
 
     public void AddPoint(int pointsToAdd)
     {
@@ -274,5 +285,10 @@ public class BeerGameController : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToDestroy);
         Realtime.Destroy(objectToDestroy);
+    }
+
+    public void PlaySound(soundNames soundName)
+    {
+        audioSource.PlayOneShot(soundEffects[(int)soundName]);
     }
 }

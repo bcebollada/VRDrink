@@ -214,28 +214,9 @@ public class MacroGameController : MonoBehaviour
 
         else if (SceneManager.GetActiveScene().name == "RunningCup_Scene" || SceneManager.GetActiveScene().name == "RunningCupMobileRig_Scene")
         {
-            Debug.Log("changing to roullete");
-
-            if (playerNumbers == 1 && playerPlaying != "Player2")
-            {
-                SceneManager.LoadScene("BeerPong_Scene");
-                ChangePlayer();
-                miniGamesPlayed = 1;
-            }
-
-            else if (playerNumbers == 2 && playerPlaying != "Player3")
-            {
-                SceneManager.LoadScene("BeerPong_Scene");
-                ChangePlayer();
-                miniGamesPlayed = 1;
-            }
-
-            else if (playerNumbers == 3 && playerPlaying != "Player4")
-            {
-                SceneManager.LoadScene("BeerPong_Scene");
-                ChangePlayer();
-                miniGamesPlayed = 1;
-            }
+            Debug.Log("changing to cut the cup");
+            if (miniGamesPlayedCommunicator == null) StartCoroutine(ChangeScene());
+            else miniGamesPlayedCommunicator.SetMiniGamesPlayed(3);
         }
     }
 
@@ -273,7 +254,23 @@ public class MacroGameController : MonoBehaviour
             {
                 SceneManager.LoadScene("RunningCupMobileRig_Scene"); //is mobile rig
             }
-        } 
+        }
+
+        else if (SceneManager.GetActiveScene().name == "RunningCup_Scene" || SceneManager.GetActiveScene().name == "RunningCupMobileRig_Scene")
+        {
+            Debug.Log("Loading cut the cup");
+            miniGamesPlayed = 3;
+
+            if (!isMobileRig) //isnt mobile rig
+            {
+                SceneManager.LoadScene("CutTheCup_Scene");
+            }
+
+            else
+            {
+                SceneManager.LoadScene("CutTheCupMobile_Scene"); //is mobile rig
+            }
+        }
     }
 
     public void ChangePlayer()

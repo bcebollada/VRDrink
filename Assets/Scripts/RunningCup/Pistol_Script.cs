@@ -35,7 +35,7 @@ public class Pistol_Script : MonoBehaviour
         if(bullets > 0)
         {
             Realtime.Instantiate("BallPistol", shootPoint.position, shootPoint.rotation, instantiateOptions);
-            bullets -= 1;
+            //bullets -= 1;
 
             foreach(GameObject gameObject in bulletsCase)
             {

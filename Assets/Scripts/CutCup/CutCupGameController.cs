@@ -9,12 +9,16 @@ public class CutCupGameController : MonoBehaviour
 {
     public TMP_Text pointText, timerText, startCountDownText;
 
+    public int VRPoints, mobilePoints;
+    public int pointsGoal; //player will need to this amout of points
+
     public float timeLeft = 30.0f;  // Set the timer duration in seconds
     private float countDown = 5f;
     public bool timerRunning, gameStartCountdown;
     private bool gameStarted;
 
     public GameObject startStand, grabVisualCue;
+    public GameObject[] cannons;
 
 
     [SerializeField] private MacroGameController macroGameController;
@@ -30,13 +34,29 @@ public class CutCupGameController : MonoBehaviour
     public Transform laucherTransform;
     public float launchTimeDuration;
 
+    public AudioSource audioSource;
+    public enum soundNames { ninjaCut, goodAim }
+    public AudioClip[] soundEffects;
+
+    public CutTheCupPointsCommunicator pointsCommunicator;
+
     private void Awake()
     {
         realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
 
         //instantiateOptions.ownedByClient = true;
         instantiateOptions.useInstance = realtimeInstance;
+
+        if (audioSource == null)
+        {
+            if (GetComponent<AudioSource>() != null)
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
+            else Debug.LogWarning("No audio source on game controller");
+        }
     }
+
 
     private void Update()
     {
@@ -93,9 +113,25 @@ public class CutCupGameController : MonoBehaviour
         {
             Realtime.InstantiateOptions instantiateOptions2 = new Realtime.InstantiateOptions();
             instantiateOptions2.ownedByClient = true;
+            instantiateOptions2.useInstance = realtimeInstance;
             Realtime.Instantiate("Katana", startStand.transform.position, Quaternion.identity, instantiateOptions2);
             Instantiate(grabVisualCue, startStand.transform.position, Quaternion.identity);
 
+        }
+
+        SetCannons(); //set cannons according to player numbers
+    }
+
+    private void SetCannons()
+    {
+        if(macroGameController.playerNumbers == 1)
+        {
+            cannons[1].SetActive(false);
+            cannons[2].SetActive(false);
+        }
+        else if(macroGameController.playerNumbers == 2)
+        {
+            cannons[2].SetActive(false);
         }
     }
 
@@ -104,6 +140,19 @@ public class CutCupGameController : MonoBehaviour
         // Code to execute when the timer is complete
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
+
+        if (VRPoints > mobilePoints) //vr player won
+        {
+            macroGameController.AddShotsLocalGame(0, 1, 1, 1);
+        }
+        else if ( mobilePoints > VRPoints) //vr player lost
+        {
+            macroGameController.AddShotsLocalGame(1, 0, 0, 0);
+        }
+        else //draw
+        {
+            macroGameController.AddShotsLocalGame(1, 1, 1, 1);
+        }
 
         if (!macroGameController.isMobileRig) //if is not mobile
         {
@@ -122,6 +171,21 @@ public class CutCupGameController : MonoBehaviour
                 mobiles.transform.position += new Vector3(0, 5, 0);
             }
         }
+    }
+
+    public void AddLocalVRPoint(int points)
+    {
+        //VRPoints += points;
+        pointText.text = $"{VRPoints} /{pointsGoal}";
+        pointsCommunicator.AddPoints(0, 1);
+
+    }
+
+    public void AddLocalMobilePoint(int points)
+    {
+        //mobilePoints += points;
+        //pointText.text = $"{VRPoints} /{pointsGoal}";
+        pointsCommunicator.AddPoints(1, 0);
     }
 
     public void GameOver()
@@ -153,18 +217,18 @@ public class CutCupGameController : MonoBehaviour
     public void SpawnBomb()
     {
         //SpawnObj("Bomb");
-        LaunchObj("Bomb");
+        LaunchObj("Bomb", Vector3.zero);
     }
 
     public void SpawnCup()
     {
         //SpawnObj("CutCup");
-        LaunchObj("CutCup");
+        LaunchObj("CutCup", Vector3.zero);
     }
 
-    public void LaunchObj(string objToSpawn)
+    public void LaunchObj(string objToSpawn, Vector3 targetArea)
     {
-        var targetArea = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
+        //var targetArea = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
 
         var Vo = CalculateVelocity(targetArea, laucherTransform.position, launchTimeDuration);
 
@@ -209,5 +273,10 @@ public class CutCupGameController : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToDestroy);
         Realtime.Destroy(objectToDestroy);
+    }
+
+    public void PlaySound(soundNames soundName)
+    {
+        audioSource.PlayOneShot(soundEffects[(int)soundName]);
     }
 }

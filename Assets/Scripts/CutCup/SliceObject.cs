@@ -51,7 +51,14 @@ public class SliceObject : MonoBehaviour
     {
         if (target.CompareTag("Obstacle"))
         {
-            gameController.GameOver();
+            //gameController.GameOver();
+            //gameController.AddLocalPoint(-1);
+
+        }
+        else if (target.CompareTag("Cup"))
+        {
+            gameController.PlaySound(CutCupGameController.soundNames.ninjaCut);
+            gameController.AddLocalVRPoint(1);
         }
 
         Vector3 vel = velocityEstimator.GetVelocityEstimate();
@@ -78,7 +85,7 @@ public class SliceObject : MonoBehaviour
         MeshCollider collider = slicedObj.AddComponent<MeshCollider>();
 
         collider.convex = true;
-        rb.AddExplosionForce(cutForce, slicedObj.transform.position, 1);
+        rb.AddExplosionForce(cutForce, slicedObj.transform.position, 0.7f);
     }
 
     public void DebugSlice()

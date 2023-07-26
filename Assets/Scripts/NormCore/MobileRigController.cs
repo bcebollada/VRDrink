@@ -13,7 +13,7 @@ public class MobileRigController : MonoBehaviour
 
     private BeerGameController beerGameController;
 
-    public TMP_Text text, debugText;
+    public TMP_Text text, pointsText , debugText;
 
     public GameObject scoreBoard;
 
@@ -23,6 +23,12 @@ public class MobileRigController : MonoBehaviour
 
     public Slider slider;
     private float initialTimer;
+
+
+    public float blockCooldown;
+    private float coolDownTime;
+    public Button blockButton;
+
 
     private void Awake()
     {
@@ -77,12 +83,25 @@ public class MobileRigController : MonoBehaviour
         else debugText.text = "no";
 
         slider.value = initialTimer - beerGameController.timeLeft;
+
+        //calculates time of cooldown
+        coolDownTime += Time.deltaTime;
+        if (coolDownTime >= blockCooldown)
+        {
+            coolDownTime = 0;
+            blockButton.interactable = true;
+        }
+
+        pointsText.text = beerGameController.points.ToString()  ;
     }
 
     public void Action()
     {
         //text.text = "action";
         eventToPerform.Invoke();
+
+        blockButton.interactable = false;
+        coolDownTime = 0;
     }
 
     public void ShowScoreboard()

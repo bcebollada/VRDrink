@@ -33,8 +33,6 @@ public class RunningCupMobileRigController : MonoBehaviour
     private PointsManager pointsManager;
 
 
-
-
     private void Awake()
     {
         realtimeInstance = GameObject.FindGameObjectWithTag("Room").GetComponent<Realtime>();
@@ -68,9 +66,7 @@ public class RunningCupMobileRigController : MonoBehaviour
         //put movbile rig in random position on scene
         transform.position = spawnCenter + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), 0, Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
 
-        if(playerNumber == 2) initialPoint = pointsManager.player2Points;
-        else if (playerNumber == 3) initialPoint = pointsManager.player3Points;
-        else if (playerNumber == 4) initialPoint = pointsManager.player4Points;
+        initialPoint = gameController.initialPointsArray[playerNumber - 1];
 
     }
 
@@ -78,66 +74,7 @@ public class RunningCupMobileRigController : MonoBehaviour
     void Update()
     {
 
-        //debug2.text = macroGameController.pointsManager.player2Points.ToString();
-        //debug3.text = playerNumber.ToString();
-
-        /*if(playerNumber == 2)
-        {
-            if(macroGameController.pointsManager.player2Points != initialPoint)
-            {
-                rb.isKinematic = true;
-
-                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
-                StartCoroutine(DestroyRealtimeObject(smoke, 3));
-
-                transform.position = deadTransform.position;
-                transform.rotation = deadTransform.rotation;
-
-                gameController.AddPoint(playerNumber);
-
-                cup.SetActive(false);
-
-                initialPoint = macroGameController.pointsManager.player2Points;
-            }
-        }
-        else if (playerNumber == 3)
-        {
-            if (macroGameController.pointsManager.player3Points != initialPoint)
-            {
-                rb.isKinematic = true;
-
-                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
-                StartCoroutine(DestroyRealtimeObject(smoke, 3));
-
-                transform.position = deadTransform.position;
-                transform.rotation = deadTransform.rotation;
-
-                gameController.AddPoint(playerNumber);
-
-                cup.SetActive(false);
-
-                initialPoint = macroGameController.pointsManager.player3Points;
-            }
-        }
-        else if (playerNumber == 4)
-        {
-            if (macroGameController.pointsManager.player4Points != initialPoint)
-            {
-                rb.isKinematic = true;
-
-                var smoke = Realtime.Instantiate("Thick Smoke Variant", transform.position, Quaternion.identity, instantiateOptions);
-                StartCoroutine(DestroyRealtimeObject(smoke, 3));
-
-                transform.position = deadTransform.position;
-                transform.rotation = deadTransform.rotation;
-
-                gameController.AddPoint(playerNumber);
-
-                cup.SetActive(false);
-
-                initialPoint = macroGameController.pointsManager.player2Points;
-            }
-        }*/
+        if (gameController.initialPointsArray[playerNumber - 1] != initialPoint && rb.isKinematic == false) Hit();
     }
 
     private void FixedUpdate()

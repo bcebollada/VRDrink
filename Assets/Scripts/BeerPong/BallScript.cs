@@ -45,6 +45,10 @@ public class BallScript : MonoBehaviour
             Debug.Log("Ball hit enviorment");
             StartCoroutine(DestroyRealtimeObject(this.gameObject, 1));
         }
+        else if (collision.gameObject.layer == 26)
+        {
+            gameController.PlaySound(BeerGameController.soundNames.blocked);
+        }
     }
 
     private IEnumerator DestroyRealtimeObject(GameObject objectToDestroy, float secondsToDestroy)

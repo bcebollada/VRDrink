@@ -25,10 +25,11 @@ public class RunningCupGameController : MonoBehaviour
 
     private Vector3 center;
 
-    public GameObject[] obstacles = new GameObject[14];
-
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
+
+    private PointsManager pointsManager;
+    public int[] initialPointsArray;
 
 
     private void Awake()
@@ -44,7 +45,8 @@ public class RunningCupGameController : MonoBehaviour
 
     private void Start()
     {
-
+        pointsManager = GameObject.FindGameObjectWithTag("PlayerPoints").GetComponent<PointsManager>();
+        initialPointsArray = new int[4] { pointsManager.player1Points, pointsManager.player2Points, pointsManager.player3Points, pointsManager.player4Points };
     }
 
 
@@ -108,6 +110,8 @@ public class RunningCupGameController : MonoBehaviour
     public void AddPoint(int playerNumberHit)
     {
         if (!timerRunning) return;
+
+        pointsManager.AddPoints(playerNumberHit, 1);
             
         points += 1;
 
@@ -122,18 +126,15 @@ public class RunningCupGameController : MonoBehaviour
 
     void TimerComplete()
     {
+        int[] pointsToAdd = new int[4];
+        if (pointsManager.player2Points != initialPointsArray[1]) pointsToAdd[1] = 1; //player 2 died
+        if (pointsManager.player3Points != initialPointsArray[2]) pointsToAdd[2] = 1; //player 3 died
+        if (pointsManager.player4Points != initialPointsArray[3]) pointsToAdd[3] = 1; //player 4 died
 
-        if (pointsGoal - points == 0 && !macroGameController.isMobileRig) //vr player won
-        {
-            macroGameController.pointsManager.AddPoints(2, 1);
-            macroGameController.pointsManager.AddPoints(3, 1);
-            macroGameController.pointsManager.AddPoints(4, 1);
-        }
-        else if(pointsGoal - points == 5 && !macroGameController.isMobileRig) //vr player lost completly
-        {
-            macroGameController.pointsManager.AddPoints(1, 2);
+        if (pointsToAdd[1] + pointsToAdd[2] + pointsToAdd[3] != 3) pointsToAdd[0] = 1; //vr player lost
+        if (pointsToAdd[1] + pointsToAdd[2] + pointsToAdd[3] == 0) pointsToAdd[0] = 2; //vr player didnt kill anyone, so extra penalty
 
-        }
+        macroGameController.AddShotsLocalGame(pointsToAdd[0], pointsToAdd[1], pointsToAdd[2], pointsToAdd[3]);
 
         timerRunning = false;
 
@@ -141,19 +142,12 @@ public class RunningCupGameController : MonoBehaviour
         timerText.text = "Finish!";
         Debug.Log("Timer complete!");
 
-        /*foreach(GameObject obstacle in obstacles)
-        {
-            var smokeObstacle = Instantiate(smokeEffect, obstacle.transform.position, Quaternion.identity);
-            Destroy(smokeObstacle, 3);
-            Destroy(obstacle);
-        }*/
-
         var smoke = Instantiate(smokeEffect, center, Quaternion.identity);
         Destroy(smoke, 3);
 
         if (!macroGameController.isMobileRig)
         {
-            Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, -90f, 0), instantiateOptions);
+            Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, 180f, 0), instantiateOptions);
         }
         else //is mobile
         {
@@ -164,17 +158,6 @@ public class RunningCupGameController : MonoBehaviour
                 mobiles.GetComponent<RunningCupMobileRigController>().ShowScoreboard();
             }
         }
-    }
-
-    private void SpawnCups()
-    {
-        //spawns randomly the cups
-        for (int i = 0; i < ballNumbers; i++)
-        {
-            var spawnArea = cupSpawnCenter + new Vector3(Random.Range(-cupSpawnSize.x / 2, cupSpawnSize.x / 2), 0, Random.Range(-cupSpawnSize.z / 2, cupSpawnSize.z / 2));
-            Instantiate(cup, spawnArea, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
-        }
-        
     }
 
     private void OnTriggerEnter(Collider other)
