@@ -4033,7 +4033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381a6c832642a614886831470765a69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumbers: 0
+  playerNumbers: 1
   playerPlaying: 
   playerLocalShots: 00000000000000000000000000000000
   playerOverallShots: 00000000000000000000000000000000

@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class PlayerNumCups_Script : MonoBehaviour
 {
     private Quaternion initialRotation;
+    public Vector3 initialPostion;
     public bool shouldSpillDrink;
     public GameObject beerEffect;
     private float secondsSpilling;
@@ -35,6 +36,8 @@ public class PlayerNumCups_Script : MonoBehaviour
 
         beerEffect.SetActive(false);
         initialRotation = transform.localRotation;
+        initialPostion = transform.position;
+
     }
 
     void Update()
@@ -55,5 +58,11 @@ public class PlayerNumCups_Script : MonoBehaviour
         }
 
 
+    }
+
+    public void ReturnInitialTranform()
+    {
+        transform.position = initialPostion;
+        transform.rotation = initialRotation;
     }
 }

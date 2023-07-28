@@ -376,7 +376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &51751210
 MonoBehaviour:
@@ -1626,7 +1626,7 @@ Transform:
   - {fileID: 788328977}
   - {fileID: 1697856945}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510483639
 GameObject:
@@ -1657,7 +1657,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519117560
 GameObject:
@@ -3611,8 +3611,39 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 29.18, y: -90, z: 0}
+--- !u!1 &1073427142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073427143}
+  m_Layer: 8
+  m_Name: SpawnOnTranform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073427143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073427142}
+  m_LocalRotation: {x: -0, y: 0.9999572, z: -0, w: 0.0092562}
+  m_LocalPosition: {x: -9.659, y: 0, z: -2.929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1142981725
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,6 +5607,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8478618163991276277, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: transformStart
+      value: 
+      objectReference: {fileID: 1073427143}
     - target: {fileID: 8560143638065544290, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5586,7 +5621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8560143638615957953, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8560143638615957953, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5647,6 +5682,18 @@ PrefabInstance:
     - target: {fileID: 8560143638724017128, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: CalibrateHeightOnStart
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560143638724017132, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: CanJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560143638724017132, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: CanMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8560143638724017132, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
+      propertyPath: CanCrouch
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8560143638724017132, guid: 524eedae73dd3d545b15fbceb728e2bf, type: 3}
       propertyPath: EnableDebugCalibrationButton

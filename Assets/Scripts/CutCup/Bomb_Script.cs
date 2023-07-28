@@ -6,6 +6,7 @@ using Normal.Realtime;
 public class Bomb_Script : MonoBehaviour
 {
     public GameObject explosionEffect;
+    private bool hasCollided;
 
     private CutCupGameController gameController;
     private Realtime.InstantiateOptions instantiateOp = new Realtime.InstantiateOptions();
@@ -36,11 +37,15 @@ public class Bomb_Script : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.layer == 8 || collision.gameObject.layer == 21)
+        else if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 21) && !hasCollided)
         {
-            gameController.PlaySound(CutCupGameController.soundNames.goodAim);
-            gameController.AddLocalMobilePoint(1);
-            Destroy(this.gameObject);
+            if (!gameController.macroGameController.isMobileRig)
+            {
+                hasCollided = true;
+                gameController.PlaySound(CutCupGameController.soundNames.goodAim);
+                gameController.AddLocalMobilePoint(1);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

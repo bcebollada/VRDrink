@@ -161,7 +161,7 @@ MonoBehaviour:
   player2Points: 0
   player3Points: 0
   player4Points: 0
-  isMain: 1
+  isMain: 0
 --- !u!114 &20440991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,21 +396,8 @@ MonoBehaviour:
   timerRunning: 0
   gameStartCountdown: 0
   isDebugMode: 0
-  obstacles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  pointsManager: {fileID: 0}
+  initialPointsArray: 
 --- !u!65 &127335977
 BoxCollider:
   m_ObjectHideFlags: 0

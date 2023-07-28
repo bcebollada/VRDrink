@@ -629,7 +629,6 @@ GameObject:
   - component: {fileID: 4098411418399560}
   - component: {fileID: 114142483780946230}
   - component: {fileID: 114852635989410700}
-  - component: {fileID: 114483422340737214}
   - component: {fileID: 114547564779284118}
   - component: {fileID: 5952335546275241776}
   m_Layer: 8
@@ -679,7 +678,7 @@ MonoBehaviour:
   - componentID: 1
     component: {fileID: 114852635989410700}
   - componentID: 2
-    component: {fileID: 114483422340737214}
+    component: {fileID: 0}
   _childViews: []
 --- !u!114 &114852635989410700
 MonoBehaviour:
@@ -699,18 +698,6 @@ MonoBehaviour:
   _syncScale: 0
   _syncVelocity: 1
   _maintainOwnershipWhileSleeping: 0
---- !u!114 &114483422340737214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946431626971230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4ff7916cbc1db4dae0b06d829ff79f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114547564779284118
 MonoBehaviour:
   m_ObjectHideFlags: 0

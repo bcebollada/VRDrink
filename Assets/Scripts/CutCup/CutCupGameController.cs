@@ -7,7 +7,7 @@ using TMPro;
 
 public class CutCupGameController : MonoBehaviour
 {
-    public TMP_Text pointText, timerText, startCountDownText;
+    public TMP_Text VRPointsText, mobilePointsText, timerText, startCountDownText;
 
     public int VRPoints, mobilePoints;
     public int pointsGoal; //player will need to this amout of points
@@ -21,7 +21,7 @@ public class CutCupGameController : MonoBehaviour
     public GameObject[] cannons;
 
 
-    [SerializeField] private MacroGameController macroGameController;
+    [SerializeField] public MacroGameController macroGameController;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
@@ -90,7 +90,10 @@ public class CutCupGameController : MonoBehaviour
                 TimerComplete();  // Call the TimerComplete function when the time is up
                 timerRunning = false;
             }
+            VRPointsText.text = pointsCommunicator.VRPoints.ToString();
+            mobilePointsText.text = pointsCommunicator.mobilePoints.ToString();
         }
+
     }
 
     public void StartGame()
@@ -173,11 +176,11 @@ public class CutCupGameController : MonoBehaviour
         }
     }
 
-    public void AddLocalVRPoint(int points)
+    public void AddLocalVRPoint(int pointsVR)
     {
         //VRPoints += points;
-        pointText.text = $"{VRPoints} /{pointsGoal}";
-        pointsCommunicator.AddPoints(0, 1);
+        //pointText.text = $"{VRPoints} /{pointsGoal}";
+        pointsCommunicator.AddPointsVR(pointsVR);
 
     }
 
@@ -185,7 +188,7 @@ public class CutCupGameController : MonoBehaviour
     {
         //mobilePoints += points;
         //pointText.text = $"{VRPoints} /{pointsGoal}";
-        pointsCommunicator.AddPoints(1, 0);
+        pointsCommunicator.AddMobPoints(points);
     }
 
     public void GameOver()

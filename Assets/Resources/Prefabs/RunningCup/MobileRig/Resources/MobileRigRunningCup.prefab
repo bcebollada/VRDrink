@@ -89,7 +89,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42091217635927760}
-  m_LocalRotation: {x: -0.08193847, y: -0, z: -0, w: 0.9966374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9976613, y: 0.9976614, z: 0.9976614}
   m_ConstrainProportionsScale: 0
@@ -263,7 +263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -376.885}
+  m_AnchoredPosition: {x: 568.8889, y: -376.885}
   m_SizeDelta: {x: 427.92, y: 0.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1517567091773178763
@@ -1114,7 +1114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -291.115}
+  m_AnchoredPosition: {x: 568.8889, y: -291.115}
   m_SizeDelta: {x: 427.92, y: 0.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3501619774364733293
@@ -1363,7 +1363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -462.655}
+  m_AnchoredPosition: {x: 568.8889, y: -462.655}
   m_SizeDelta: {x: 427.92, y: 0.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3918343791592177545
@@ -1401,7 +1401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -205.345}
+  m_AnchoredPosition: {x: 568.8889, y: -205.345}
   m_SizeDelta: {x: 427.92, y: 0.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4194817489645631150
@@ -3087,6 +3087,7 @@ GameObject:
   - component: {fileID: 5106026846348134517}
   - component: {fileID: 1341842328407562880}
   - component: {fileID: 7766089623069609037}
+  - component: {fileID: 6995878953588425623}
   m_Layer: 18
   m_Name: MobileRigRunningCup
   m_TagString: MobileRigGameController
@@ -3328,6 +3329,19 @@ MonoBehaviour:
   - {fileID: 4584783992320805804}
   - {fileID: 2955219599026221897}
   realtimeView: {fileID: 8656347320696182334}
+--- !u!65 &6995878953588425623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034018464601007482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 0.77, z: 0.57}
+  m_Center: {x: 0, y: 0.115, z: 0}
 --- !u!1 &8173657417091578009
 GameObject:
   m_ObjectHideFlags: 0

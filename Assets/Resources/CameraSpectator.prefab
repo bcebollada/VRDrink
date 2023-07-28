@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1336748977834501749}
   - component: {fileID: 2451469938528253618}
   - component: {fileID: 544928144980805836}
+  - component: {fileID: 4679694052754716071}
   m_Layer: 0
   m_Name: CameraSpectator
   m_TagString: Untagged
@@ -54,13 +55,13 @@ MonoBehaviour:
   LevelCamera: 1
   LevelCameraAngleThreshold: 7.5
   ForwardMovementLockEnabled: 1
-  MovementSpeedMagnification: 1
+  MovementSpeedMagnification: 0.2
   WheelMouseMagnification: 5
   ShiftKeyMagnification: 2
   ControlKeyMagnification: 0.25
   RotationMagnification: 1
-  PanLeftRightSensitivity: 1
-  PanUpDownSensitivity: 1
+  PanLeftRightSensitivity: 0.6
+  PanUpDownSensitivity: 0.6
   MouseRotationSensitivity: 0.5
   ForwardDampenRate: 0.6
   PanningDampenRate: 0.6
@@ -205,3 +206,11 @@ MonoBehaviour:
   objToDeativate:
   - {fileID: 4169213961284604000}
   realtimeView: {fileID: 1336748977834501749}
+--- !u!81 &4679694052754716071
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169213961284604000}
+  m_Enabled: 1

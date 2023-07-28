@@ -5460,7 +5460,6 @@ GameObject:
   - component: {fileID: 6190722288047919423}
   - component: {fileID: 6190722288047919421}
   - component: {fileID: 6190722288047919554}
-  - component: {fileID: 1872786841002302393}
   - component: {fileID: 8385602569083437489}
   - component: {fileID: 6761377180517672837}
   - component: {fileID: 6843062476280985803}
@@ -5644,36 +5643,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0.07, z: 0}
---- !u!114 &1872786841002302393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6190722288047919555}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd8865e2fea3d247a44fc1080f8ade8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shouldSpillDrink: 1
-  beerEffect: {fileID: 2484592755213617374}
-  nextGameEvent: 0
-  myEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: BeerGameController, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8385602569083437489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5686,6 +5655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46259a7ae676afb4f8898b4d21f0c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPostion: {x: 0, y: 0, z: 0}
   shouldSpillDrink: 1
   beerEffect: {fileID: 2484592755213617374}
   cupNumber: 2

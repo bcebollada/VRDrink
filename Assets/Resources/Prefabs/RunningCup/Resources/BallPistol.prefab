@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8777be01eae324e91c14d7cde3c755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 2
+  velocity: 1.5
 --- !u!114 &6380443292160699531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ MonoBehaviour:
   _syncRotation: 1
   _syncScale: 1
   _syncVelocity: 1
-  _maintainOwnershipWhileSleeping: 1
+  _maintainOwnershipWhileSleeping: 0
 --- !u!114 &7655647514247147255
 MonoBehaviour:
   m_ObjectHideFlags: 0

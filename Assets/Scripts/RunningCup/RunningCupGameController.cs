@@ -28,7 +28,7 @@ public class RunningCupGameController : MonoBehaviour
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
 
-    private PointsManager pointsManager;
+    public PointsManager pointsManager;
     public int[] initialPointsArray;
 
 
@@ -111,13 +111,13 @@ public class RunningCupGameController : MonoBehaviour
     {
         if (!timerRunning) return;
 
-        pointsManager.AddPoints(playerNumberHit, 1);
+        //pointsManager.AddPoints(playerNumberHit, 1);
             
         points += 1;
 
-        if(macroGameController.pointsManager != null && macroGameController.isMobileRig)
+        if(pointsManager != null && macroGameController.isMobileRig)
         {
-            macroGameController.pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
+            //pointsManager.AddPoints(playerNumberHit, 1); //gives shot to player hitted
         }
 
         if (points == GameObject.FindGameObjectsWithTag("MobileRigGameController").Length) TimerComplete(); //killed all mobile players
@@ -131,10 +131,8 @@ public class RunningCupGameController : MonoBehaviour
         if (pointsManager.player3Points != initialPointsArray[2]) pointsToAdd[2] = 1; //player 3 died
         if (pointsManager.player4Points != initialPointsArray[3]) pointsToAdd[3] = 1; //player 4 died
 
-        if (pointsToAdd[1] + pointsToAdd[2] + pointsToAdd[3] != 3) pointsToAdd[0] = 1; //vr player lost
+        if (pointsToAdd[1] + pointsToAdd[2] + pointsToAdd[3] != GameObject.FindGameObjectsWithTag("MobileRig").Length) pointsToAdd[0] = 1; //vr player lost
         if (pointsToAdd[1] + pointsToAdd[2] + pointsToAdd[3] == 0) pointsToAdd[0] = 2; //vr player didnt kill anyone, so extra penalty
-
-        macroGameController.AddShotsLocalGame(pointsToAdd[0], pointsToAdd[1], pointsToAdd[2], pointsToAdd[3]);
 
         timerRunning = false;
 
@@ -147,6 +145,7 @@ public class RunningCupGameController : MonoBehaviour
 
         if (!macroGameController.isMobileRig)
         {
+            macroGameController.AddShotsLocalGame(pointsToAdd[0], pointsToAdd[1], pointsToAdd[2], pointsToAdd[3]);
             Realtime.Instantiate("ScoreBoard", center, Quaternion.Euler(0, 180f, 0), instantiateOptions);
         }
         else //is mobile
@@ -162,6 +161,7 @@ public class RunningCupGameController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        AddPoint(other.gameObject.GetComponent<RunningCupMobileRigController>().playerNumber);
+        points += 1;
+        if (points == GameObject.FindGameObjectsWithTag("MobileRigGameController").Length) TimerComplete(); //killed all mobile players
     }
 }

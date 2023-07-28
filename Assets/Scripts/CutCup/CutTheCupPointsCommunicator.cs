@@ -34,6 +34,7 @@ public class CutTheCupPointsCommunicator : RealtimeComponent<CutTheCupPointsMode
 
             // Register for events so we'll know if the color changes later
             currentModel.mobilePointsDidChange += PointsDidChange;
+            currentModel.vrPointsDidChange += PointsDidChange;
         }
     }
 
@@ -48,9 +49,13 @@ public class CutTheCupPointsCommunicator : RealtimeComponent<CutTheCupPointsMode
         VRPoints = model.vrPoints;
     }
 
-    public void AddPoints(int mobilePoints, int VRPoints)
+    public void AddMobPoints(int mobilePoints)
     {
         model.mobilePoints += mobilePoints;
-        model.vrPoints += VRPoints;
+    }
+
+    public void AddPointsVR(int points)
+    {
+        model.vrPoints += points;
     }
 }

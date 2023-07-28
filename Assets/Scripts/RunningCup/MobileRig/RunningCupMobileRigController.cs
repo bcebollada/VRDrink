@@ -23,7 +23,7 @@ public class RunningCupMobileRigController : MonoBehaviour
 
     public bool isOnGround;
 
-    private bool wasHit;
+    private bool wasHit, isDead;
 
     private Realtime.InstantiateOptions instantiateOptions = new Realtime.InstantiateOptions();
     private Realtime realtimeInstance;
@@ -74,7 +74,11 @@ public class RunningCupMobileRigController : MonoBehaviour
     void Update()
     {
 
-        if (gameController.initialPointsArray[playerNumber - 1] != initialPoint && rb.isKinematic == false) Hit();
+        if (gameController.initialPointsArray[playerNumber - 1] != initialPoint && isDead == false)
+        {
+            Hit();
+            isDead = true;
+        }
     }
 
     private void FixedUpdate()
@@ -110,6 +114,7 @@ public class RunningCupMobileRigController : MonoBehaviour
         transform.rotation = deadTransform.rotation;
 
         //gameController.AddPoint(playerNumber);
+        pointsManager.AddPoints(playerNumber, 1);
 
         cup.SetActive(false);
         debug1.text = "hit3";
@@ -125,11 +130,11 @@ public class RunningCupMobileRigController : MonoBehaviour
         {
             Debug.Log("Cup hitted by ball");
 
-            Hit();
+            //Hit();
 
             if (macroGameController.isMobileRig)
             {
-                //Hit();
+                Hit();
 
             }
         }
@@ -159,6 +164,14 @@ public class RunningCupMobileRigController : MonoBehaviour
         transform.rotation = deadTransform.rotation;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            other.gameObject.GetComponent<RealtimeView>().RequestOwnership();
+            other.gameObject.GetComponent<RealtimeTransform>().RequestOwnership();
+        }
+    }
     public void GameStart()
     {
         instructions.SetActive(false);

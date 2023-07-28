@@ -7,9 +7,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1275771513710668915, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37ae8cba39757e0499c8fa6f1df716cf, type: 2}
     - target: {fileID: 4118300635128415771, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 133962295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118300635981618679, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: CanJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118300635981618679, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: CanMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118300635981618679, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: CanTurn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118300635981618679, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: CanCrouch
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4118300636142094296, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
       propertyPath: m_Name
@@ -35,6 +55,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426658218518179390, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 37ae8cba39757e0499c8fa6f1df716cf, type: 2}
     m_RemovedComponents:
     - {fileID: 4118300636107842750, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
     - {fileID: 4118300635614523602, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
@@ -102,10 +126,10 @@ MonoBehaviour:
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Tracking State Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 227972a6-a387-4463-bfdd-54469d7edcf1
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -146,6 +170,24 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   m_HasMigratedActions: 1
+--- !u!1 &8560143638724017133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4118300635981618678, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
+  m_PrefabInstance: {fileID: 5759147154908505627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8478618163991276277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560143638724017133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b72bccd8c57f564c84d236d7eab7d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformStart: {fileID: 0}
 --- !u!1 &8560143638944044747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4118300635614523600, guid: ae0dc9a988adf1848ac652930f105d0e, type: 3}
@@ -209,10 +251,10 @@ MonoBehaviour:
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Tracking State Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: c2d9e2cf-2634-499a-b73d-b35a112aa438
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
