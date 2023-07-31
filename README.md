@@ -1,7 +1,7 @@
 <h1 align="center">Let's Drink!</h1>
 
 <p align="center">
-  <img alt="Preview" width="660" alt="preview" src="https://github.com/VFS-VRAR/BrickBreaker/blob/main/BrickBreaker.gif">
+  <img alt="Preview" width="660" alt="preview" src="https://github.com/bcebollada/VRDrink/blob/Multiplayer/GithubMaterial/MainGif.gif">
 <p align="center">
 
 ## Summary
@@ -73,7 +73,7 @@ Talk about your journey during development. The problems/adversities that happen
 ## Case Study Video 
 > Example Video
 
-[![](http://i3.ytimg.com/vi/G7rzMntNpz4/hqdefault.jpg)](https://youtu.be/1Jbzu1wOltk "Click to play on Youtube.com")
+[![](https://github.com/bcebollada/VRDrink/blob/Multiplayer/GithubMaterial/LetsDrinkMain.png)](https://youtu.be/1Jbzu1wOltk "Click to play on Youtube.com")
 ## Roadmap / Beyond
 
 * Select specific mini game
