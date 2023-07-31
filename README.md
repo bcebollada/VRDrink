@@ -5,7 +5,7 @@
 <p align="center">
 
 ## Summary
-Let's Drink is a series of cross-plataform mini-party-games where one person using a VR headeset will play against up to 4 players using their mobile phones. Who loses, drinks!
+Let's Drink is a series of cross-platform mini-party-games where one person using a VR headeset will play against up to 3 players using their mobile phones. Who loses, drinks!
 
 ## Project Aim / Goal / Pillars
 The project Goal is to allow people who own a VR headset interact and have fun with friend who don't own one. Casual mini-games get more popular everyday and XR industry still lacks in these.
@@ -64,13 +64,16 @@ The project Goal is to allow people who own a VR headset interact and have fun w
 ## Journey
 Talk about your journey during development. The problems/adversities that happened, and how did you manage to solve/adapt to it
 - Challenges
+  - Working with multiple clients, debugging was quite a challenge sinice it was my first big networked project.
+  - Creating diegetic interactions that are intuitive thorughout the experience was a bit challegning and multiple tests were needed.
 - What I learned?
-
+  - Create System Architectures to help scalate projects more easily.
+  - How to do multiple clients debugging and testing with efficiency.
 
 ## Case Study Video 
 > Example Video
 
-[![](http://i3.ytimg.com/vi/G7rzMntNpz4/hqdefault.jpg)](https://www.youtube.com/watch?v=G7rzMntNpz4 "Click to play on Youtube.com")
+[![](http://i3.ytimg.com/vi/G7rzMntNpz4/hqdefault.jpg)](https://youtu.be/1Jbzu1wOltk "Click to play on Youtube.com")
 ## Roadmap / Beyond
 
 * Select specific mini game
