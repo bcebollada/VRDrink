@@ -1,7 +1,7 @@
 <h1 align="center">Let's Drink!</h1>
 
 <p align="center">
-  <img alt="Preview" width="660" alt="preview" src="https://github.com/bcebollada/VRDrink/blob/Multiplayer/GithubMaterial/MainGif.gif">
+  <img alt="Preview" width="660" alt="preview" src="https://github.com/bcebollada/LetsDrinkMedia/blob/main/MainGif.gif">
 <p align="center">
 
 ## Summary
@@ -82,7 +82,7 @@ The project Goal is to allow people who own a VR headset interact and have fun w
 ## Case Study Video 
 > Example Video
 
-[![](https://github.com/bcebollada/VRDrink/blob/Multiplayer/GithubMaterial/LetsDrinkMain.png)](https://youtu.be/1Jbzu1wOltk "Click to play on Youtube.com")
+[![](https://github.com/bcebollada/LetsDrinkMedia/blob/main/LetsDrinkMain.png)](https://youtu.be/1Jbzu1wOltk "Click to play on Youtube.com")
 ## Roadmap / Beyond
 
 * Select specific mini game
