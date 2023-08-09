@@ -57,15 +57,24 @@ The project Goal is to allow people who own a VR headset interact and have fun w
 ## Process 
 - Project started as a local game where players would pass the heaset to each other.
 - After feedback, networking was choosen so people wouldn't feel bored while they don't play.
-- Mini games were prototyped and tested.
+- Normcore networking integration
 - Environment was designed.
 - UI for mobile and VR designed.
+- With core-loop for first couple mini games were done, proceeded to Gameplay testing Phase 1
+- Changes after feedback: Remove locomotion; remove gun recharging; Add more visual cues; Rework grabbing/releasing object interaction
+- Created third mini=game;
+- Second phase of gameplay testing
 
 ## Journey
-Talk about your journey during development. The problems/adversities that happened, and how did you manage to solve/adapt to it
 - Challenges
   - Working with multiple clients, debugging was quite a challenge sinice it was my first big networked project.
   - Creating diegetic interactions that are intuitive thorughout the experience was a bit challegning and multiple tests were needed.
+    
+- Solutions
+  - Designed the system architecture before programming anything.
+  - Tested almost every changed made throughout the project with people avaliable around me.
+  - Had a solid User flow and vision for what I wanted to create.
+  
 - What I learned?
   - Create System Architectures to help scalate projects more easily.
   - How to do multiple clients debugging and testing with efficiency.
