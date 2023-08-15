@@ -171,6 +171,15 @@ public class BeerGameController : MonoBehaviour
             Realtime.Instantiate("ScoreBoard", startStand.transform.position, Quaternion.Euler(0, 90f, 0), instantiateOptions);
             //Instantiate(scoreBoard, currentTable.transform.position, Quaternion.Euler(0 , -90f, 0));
             Realtime.Destroy(currentTable); //removes last table
+
+            var balls = GameObject.FindGameObjectsWithTag("Ball");
+            if(balls.Length > 0)
+            {
+                foreach (var ball in balls)
+                {
+                    Realtime.Destroy(ball);
+                }
+            }
         }
         else //is mobile
         {
@@ -275,7 +284,7 @@ public class BeerGameController : MonoBehaviour
     public void SpawnBall()
     {
         //if (ball != null) return;
-        if (macroGameController.isMobileRig) return;
+        if (macroGameController.isMobileRig || timerText.text == "Finish!") return;
 
         ball = Realtime.Instantiate("Ball", ballSpawner.position, Quaternion.identity, instantiateOptions);
         //ball = Instantiate(ballPrefab, ballSpawner.position, Quaternion.identity);

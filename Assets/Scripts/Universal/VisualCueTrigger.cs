@@ -24,7 +24,7 @@ public class VisualCueTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && instruction == null && numberOfShows <= 3)
+        if (other.gameObject.CompareTag("Player") && instruction == null && numberOfShows <= 2)
         {
             instruction = Instantiate(instructionPrefab, UISpawnPos.position, Quaternion.identity);
             numberOfShows += 1;

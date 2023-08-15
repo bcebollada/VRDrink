@@ -227,7 +227,7 @@ MonoBehaviour:
   spawnSize: {x: 0.29, y: 0.2, z: 1.7}
   spawnCenter: {x: -7.27, y: 0.18, z: -3.33}
   laucherTransform: {fileID: 0}
-  launchTimeDuration: 1.4
+  launchTimeDuration: 0.9
   audioSource: {fileID: 127335978}
   soundEffects:
   - {fileID: 8300000, guid: d44616d133eb36a49a54b656edd20e0c, type: 3}
@@ -2728,7 +2728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.472
+      value: -15.03
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3331,7 +3331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.472
+      value: -15.03
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5235,7 +5235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.472
+      value: -15.03
       objectReference: {fileID: 0}
     - target: {fileID: 5571779489866409745, guid: cda307205dc0723488573824656306a2, type: 3}
       propertyPath: m_LocalPosition.y
